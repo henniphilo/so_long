@@ -6,11 +6,11 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:32:51 by hwiemann          #+#    #+#             */
-/*   Updated: 2023/07/31 16:17:23 by hwiemann         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:48:56 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+// #include <mlx.h>
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -19,15 +19,17 @@
 #include <X11/keysym.h>
 #include <mlx.h>
 
-#define WINDOW_WIDTH 600
-#define WINDOW_HEIGHT 300
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
 
-#define MLX_ERROR 1
+# define MLX_ERROR 1
 
-#define RED_PIXEL 0xFF0000
+# define RED_PIXEL 0xFF0000
+//#endif
 
 typedef struct	s_data {
-	void	*
+	void	*mlx;
+	void	*win;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -48,14 +50,25 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	close(int keycode, t_vars *vars) //need to use keycode esc
+int	esc_keypress(int keysym, t_data *data)
 {
-	mlx_destroy_window(data->mlx, vars->win);
+	if(keysym == XK_Escape)
+	{
+		mlx_destroy_window(data->mlx, data->win);
+		data->win = NULL;
+	}
+	return (0);
+}
+
+int	render(t_data *data)
+{
+	if (data->win != NULL)
+		my_mlx_pixel_put(data, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, RED_PIXEL);
 	return (0);
 }
 
 
-// mlx_hook(vars.win, ON_DESTROY, 0, close, &vars);
+//muss noch adjusted werden
 
 int	main(void)
 {
@@ -65,10 +78,17 @@ int	main(void)
 //	t_vars	vars;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Sooooo Long");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
+	if (mlx == NULL)
+		return (MLX_ERROR);
+	mlx_win = mlx_new_window(mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Sooooo Long");
+	if (mlx_win == NULL)
+	{
+		free(mlx_win);
+		return (MLX_ERROR);
+	}
+	//img.img = mlx_new_image(mlx, 1920, 1080);
+	//img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+	//							&img.endian);
 	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
 	my_mlx_pixel_put(&img, 5, 7, 0x00a4ffa4);
 	my_mlx_pixel_put(&img, 5, 9, 0x00a4ffa4);
@@ -78,7 +98,7 @@ int	main(void)
 	my_mlx_pixel_put(&img, 5, 20, 0x00FF0000);
 	my_mlx_pixel_put(&img, 5, 25, 0x00FF0000);
 
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	//mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 //	mlx_hook(vars.win, 2, 1L<<0, close, &vars.win);
 	mlx_loop(mlx);
 }
