@@ -6,89 +6,92 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:32:51 by hwiemann          #+#    #+#             */
-/*   Updated: 2023/08/02 17:48:56 by hwiemann         ###   ########.fr       */
+/*   Updated: 2023/08/21 19:07:25 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <mlx.h>
+/*
+#include "so_long.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-
-#include <X11/X.h>
-#include <X11/keysym.h>
-#include <mlx.h>
-
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
-
-# define MLX_ERROR 1
-
-# define RED_PIXEL 0xFF0000
-//#endif
+typedef struct s_img {
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
 
 typedef struct	s_data {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	img;
+	int		cur_img;
 }				t_data;
-/*
- typedef struct	s_vars {
-	void	*mlx;
-	void	*win;
-}				t_vars;
-*/
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int*)dst = color;
+}
+
+void	render_background(t_img *img, int color)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < WINDOW_HEIGHT)
+	{
+		j = 0;
+		while (j < WINDOW_WIDTH)
+		{
+			my_mlx_pixel_put(img, j++, i, color);
+		}
+		++i;
+	}
 }
 
 int	esc_keypress(int keysym, t_data *data)
 {
 	if(keysym == XK_Escape)
 	{
-		mlx_destroy_window(data->mlx, data->win);
-		data->win = NULL;
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		data->win_ptr = NULL;
 	}
 	return (0);
 }
 
 int	render(t_data *data)
 {
-	if (data->win != NULL)
-		my_mlx_pixel_put(data, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, RED_PIXEL);
+	t_img	img;
+
+	if (data->win_ptr == NULL)
+		return (1);
+	render_background(&data->img, 0xFFFFFF);
+		my_mlx_pixel_put(&img, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0xFF0000);
 	return (0);
 }
 
 
-//muss noch adjusted werden
-
 int	main(void)
 {
-	t_data	img;
-	void	*mlx;
-	void	*mlx_win;
-//	t_vars	vars;
+	t_data	data;
+	t_img	img;
 
-	mlx = mlx_init();
-	if (mlx == NULL)
+	data.mlx_ptr = mlx_init();
+	if (data.mlx_ptr == NULL)
 		return (MLX_ERROR);
-	mlx_win = mlx_new_window(mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Sooooo Long");
-	if (mlx_win == NULL)
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "Sooooo Long");
+	if (data.win_ptr == NULL)
 	{
-		free(mlx_win);
+		free(data.win_ptr);
 		return (MLX_ERROR);
 	}
-	//img.img = mlx_new_image(mlx, 1920, 1080);
-	//img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-	//							&img.endian);
+	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
+	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len,
+								&data.img.endian);
 	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
 	my_mlx_pixel_put(&img, 5, 7, 0x00a4ffa4);
 	my_mlx_pixel_put(&img, 5, 9, 0x00a4ffa4);
@@ -98,18 +101,14 @@ int	main(void)
 	my_mlx_pixel_put(&img, 5, 20, 0x00FF0000);
 	my_mlx_pixel_put(&img, 5, 25, 0x00FF0000);
 
+	mlx_loop_hook(data.mlx_ptr, &render, &data);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &esc_keypress, &data);
 	//mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 //	mlx_hook(vars.win, 2, 1L<<0, close, &vars.win);
-	mlx_loop(mlx);
+	mlx_loop(data.mlx_ptr);
+	mlx_destroy_image(data.mlx_ptr, data.img.mlx_img);
+	mlx_destroy_display(data.mlx_ptr);
+	free(data.mlx_ptr);
 }
-/*
-int	main(void)
-{
-	t_vars	vars;
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-	mlx_hook(vars.win, 2, 1L<<0, close, &vars);
-	mlx_loop(vars.mlx);
-}*/
-
+*/

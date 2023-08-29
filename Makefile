@@ -1,5 +1,5 @@
 
-NAME = so_long
+NAME = sooo_long
 
 LIB = mlx_linux
 LIBA = libmlx.a
@@ -8,10 +8,10 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g # -fsanitize=address
 RM = rm -f
 
-SRC = so_long.c \
+SRC = sooo_long.c \
 
 
-all: so_long
+all: sooo_long
 
 %.o: %.c
 	$(CC) (CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
@@ -27,7 +27,7 @@ clean:
 
 fclean: clean
 	make -C $(LIB) fclean
-	$(RM) so_long
+	$(RM) sooo_long
 re: fclean all
 
 .PHONY: all clean fclean re
