@@ -6,42 +6,11 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 18:28:23 by hwiemann          #+#    #+#             */
-/*   Updated: 2023/08/28 15:31:52 by hwiemann         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:42:21 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-typedef struct s_position
-{
-	int	x;
-	int	y;
-}	t_position;
-
-//a pointer to the window and its size
-typedef struct s_window
-{
-	void	*reference;
-	t_position	size;
-}	t_window;
-
-typedef struct s_image
-{
-	void	*reference;
-	t_position	size;
-	char	*pixels;
-	int		bpp;
-	int		line_size;
-	int		endian;
-}	t_image;
-
-typedef struct s_program
-{
-	void	*mlx_pointer;
-	t_window	window;
-	t_image		image;
-	t_position	img_position;
-}	t_program;
 
 int	ft_close()
 {
@@ -90,9 +59,9 @@ int	ft_input(int key, void *param)
 		p->img_position.x += p->image.size.x;
 	else if (key == 65361)
 		p->img_position.x -= p->image.size.x;
-	else if (key == 65362)
-		p->img_position.y += p->image.size.y;
 	else if (key == 65364)
+		p->img_position.y += p->image.size.y;
+	else if (key == 65362)
 		p->img_position.y -= p->image.size.y;
 	/*else if (key == 15)
 		turn_img_to_color(&p->image, new_color(255,0,0,0));
