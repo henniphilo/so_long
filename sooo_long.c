@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 18:28:23 by hwiemann          #+#    #+#             */
-/*   Updated: 2023/09/06 11:42:21 by hwiemann         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:03:36 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,11 @@ t_window	ft_new_window(void *mlx, int width, int height, char *name)
 	return(window);
 }
 
-t_image	ft_new_image(void *mlx, int width, int height)
+int	close_game(t_program *p)
 {
-	t_image	img;
-
-	img.reference = mlx_new_image(mlx, width, height);
-	img.size.x = width;
-	img.size.y = height;
-	img.pixels = mlx_get_data_addr(img.reference, &img.bpp, &img.line_size, &img.endian);
-	return (img);
-}
-
-t_image ft_new_sprite(void *mlx, char *path)
-{
-	t_image	img;
-
-	img.reference = mlx_xpm_file_to_image(mlx, path, &img.size.x, &img.size.y);
-	img.pixels = mlx_get_data_addr(img.reference, &img.bpp, &img.line_size, &img.endian);
-	return (img);
+	mlx_destroy_window(p->mlx_pointer, p->window.reference);
+	free(p);
+	exit(1);
 }
 
 int	ft_input(int key, void *param)
@@ -63,6 +50,9 @@ int	ft_input(int key, void *param)
 		p->img_position.y += p->image.size.y;
 	else if (key == 65362)
 		p->img_position.y -= p->image.size.y;
+	else if (key == 65307)
+		close_game(p);
+
 	/*else if (key == 15)
 		turn_img_to_color(&p->image, new_color(255,0,0,0));
 	else if (key == 5)
@@ -82,7 +72,7 @@ int main(void)
 	if (!p.mlx_pointer)
 		return (MLX_ERROR);
 	p.window = ft_new_window(p.mlx_pointer, WINDOW_WIDTH, WINDOW_HEIGHT, "HI HENNI");
-	p.image = ft_new_sprite(p.mlx_pointer, "teapot.xpm");
+	p.image = ft_new_sprite(p.mlx_pointer, "stea-bag.xpm");
 	p.img_position.x = 0;
 	p.img_position.y = 0;
 	mlx_put_image_to_window(p.mlx_pointer, p.window.reference, p.image.reference, p.img_position.x, p.img_position.y);

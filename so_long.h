@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:11:34 by hwiemann          #+#    #+#             */
-/*   Updated: 2023/09/06 11:49:35 by hwiemann         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:07:55 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@
 #define MLX_ERROR 1
 #define RED_PIXEL 0xFF0000
 
+typedef struct	s_look
+{
+	void	*reference;
+
+}	t_look;
+
+
 typedef struct s_position
 {
 	int	x;
@@ -44,9 +51,18 @@ typedef struct s_image
 	void	*reference;
 	t_position	size;
 	char	*pixels;
+	char	**map;
 	int		bpp;
 	int		line_size;
 	int		endian;
+	int		moves;
+	int		pot_pos_x;
+	int		pot_pos_y;
+	void	*floor;
+	void	*wall;
+	void	*tea;
+	void	*cup;
+	void	*pot;
 }	t_image;
 
 typedef struct s_program

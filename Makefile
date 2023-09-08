@@ -8,7 +8,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g # -fsanitize=address
 RM = rm -f
 
-SRC = sooo_long.c \
+SRC = *.c \
 
 
 all: sooo_long
