@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/11 15:50:52 by hwiemann         ###   ########.fr       */
+/*   Created: 2023/05/16 12:45:00 by hwiemann          #+#    #+#             */
+/*   Updated: 2023/05/16 12:52:15 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+/*Outputs the string ’s’ to the given file
+descriptor.*/
 
-#include <mlx.h>
-# include "./libft/libft.h"
+#include "libft.h"
 
-#define	WIN_HEIGHT	1080
-#define	WIN_WIDTH	1920
-
-
-typedef struct s_program
+void	ft_putstr_fd(char *s, int fd)
 {
-	void *mlx_pointer;
-	void *window;
-}	t_program;
+	int	i;
 
-#endif
+	i = 0;
+	while (s[i])
+	{
+		write (fd, &s[i], 1);
+		i++;
+	}
+}

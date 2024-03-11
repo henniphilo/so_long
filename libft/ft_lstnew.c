@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/11 15:50:52 by hwiemann         ###   ########.fr       */
+/*   Created: 2023/05/23 11:05:49 by hwiemann          #+#    #+#             */
+/*   Updated: 2023/05/23 18:21:35 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+/* Allocates and returns a new node.*/
 
-#include <mlx.h>
-# include "./libft/libft.h"
+#include "libft.h"
 
-#define	WIN_HEIGHT	1080
-#define	WIN_WIDTH	1920
-
-
-typedef struct s_program
+t_list	*ft_lstnew(void *content)
 {
-	void *mlx_pointer;
-	void *window;
-}	t_program;
+	t_list	*new_node;
 
-#endif
+	new_node = malloc(sizeof(t_list));
+	if (new_node == NULL)
+		return (NULL);
+	new_node->content = content;
+	new_node->next = NULL;
+	return (new_node);
+}

@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/11 15:50:52 by hwiemann         ###   ########.fr       */
+/*   Created: 2023/05/11 15:32:03 by hwiemann          #+#    #+#             */
+/*   Updated: 2023/05/11 15:32:09 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-#include <mlx.h>
-# include "./libft/libft.h"
-
-#define	WIN_HEIGHT	1080
-#define	WIN_WIDTH	1920
-
-
-typedef struct s_program
+void	*ft_memcpy(void *restrict dest, const void *restrict src, size_t size)
 {
-	void *mlx_pointer;
-	void *window;
-}	t_program;
+	size_t	i;
 
-#endif
+	i = 0;
+	if (!dest && !src)
+		return (0);
+	while (i < size)
+	{
+		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dest);
+}

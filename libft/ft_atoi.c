@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/11 15:50:52 by hwiemann         ###   ########.fr       */
+/*   Created: 2023/05/11 15:29:53 by hwiemann          #+#    #+#             */
+/*   Updated: 2024/02/13 12:43:21 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-#include <mlx.h>
-# include "./libft/libft.h"
-
-#define	WIN_HEIGHT	1080
-#define	WIN_WIDTH	1920
-
-
-typedef struct s_program
+long int	ft_atoi(const char *str)
 {
-	void *mlx_pointer;
-	void *window;
-}	t_program;
+	long int		sign;
+	long			result;
+	int				i;
 
-#endif
+	sign = 1;
+	result = 0;
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+	{
+		i++;
+	}
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i++] == '-')
+			sign *= -1;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (sign * result);
+}

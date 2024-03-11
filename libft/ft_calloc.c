@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/11 15:50:52 by hwiemann         ###   ########.fr       */
+/*   Created: 2023/05/11 15:30:24 by hwiemann          #+#    #+#             */
+/*   Updated: 2023/05/11 15:30:39 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-#include <mlx.h>
-# include "./libft/libft.h"
-
-#define	WIN_HEIGHT	1080
-#define	WIN_WIDTH	1920
-
-
-typedef struct s_program
+void	*ft_calloc(size_t count, size_t size)
 {
-	void *mlx_pointer;
-	void *window;
-}	t_program;
+	void	*ptr;
 
-#endif
+	ptr = malloc(count * size);
+	if (ptr == NULL)
+		return (ptr);
+	ft_bzero(ptr, size * count);
+	return (ptr);
+}

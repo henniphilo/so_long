@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/11 15:50:52 by hwiemann         ###   ########.fr       */
+/*   Created: 2023/05/16 15:28:26 by hwiemann          #+#    #+#             */
+/*   Updated: 2023/05/19 11:32:32 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+/* Outputs the string ’s’ to the given file descriptor
+followed by a newline.*/
 
-#include <mlx.h>
-# include "./libft/libft.h"
+#include "libft.h"
 
-#define	WIN_HEIGHT	1080
-#define	WIN_WIDTH	1920
-
-
-typedef struct s_program
+void	ft_putendl_fd(char *s, int fd)
 {
-	void *mlx_pointer;
-	void *window;
-}	t_program;
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
+}
 
-#endif
+/*int main ()
+{
+	ft_putendl_fd("hallo", 45);
+} */

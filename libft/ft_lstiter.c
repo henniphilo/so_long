@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/11 15:50:52 by hwiemann         ###   ########.fr       */
+/*   Created: 2023/05/23 17:10:03 by hwiemann          #+#    #+#             */
+/*   Updated: 2023/05/23 17:18:20 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+/* Iterates the list ’lst’ and applies the function
+’f’ on the content of each node.*/
 
-#include <mlx.h>
-# include "./libft/libft.h"
+#include "libft.h"
 
-#define	WIN_HEIGHT	1080
-#define	WIN_WIDTH	1920
-
-
-typedef struct s_program
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	void *mlx_pointer;
-	void *window;
-}	t_program;
+	t_list	*pos;
 
-#endif
+	if (lst == NULL || f == NULL)
+		return ;
+	pos = lst;
+	while (pos != NULL)
+	{
+		(*f)(pos->content);
+		pos = pos->next;
+	}
+}

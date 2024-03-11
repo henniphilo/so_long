@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/11 15:50:52 by hwiemann         ###   ########.fr       */
+/*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
+/*   Updated: 2024/03/11 16:35:03 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-#include <mlx.h>
-# include "./libft/libft.h"
-
-#define	WIN_HEIGHT	1080
-#define	WIN_WIDTH	1920
-
-
-typedef struct s_program
+int	ft_close()
 {
-	void *mlx_pointer;
-	void *window;
-}	t_program;
+	exit(0);
+}
 
-#endif
+t_program	window()
+{
+	t_program	ptr;
+
+	if(!(ptr.mlx_pointer = mlx_init()))
+		exit(1);
+	if(!(ptr.window = mlx_new_window(ptr.mlx_pointer, WIN_WIDTH, WIN_HEIGHT, "HI")))
+		{
+			free(ptr.mlx_pointer);
+			exit(1);
+		}
+	free(ptr.mlx_pointer);
+
+//	mlx_hook(ptr.reference, 17, 0, ft_close, 0);
+	return(ptr);
+}
+
+int	main()
+{
+	window();
+	return(0);
+}
