@@ -1,8 +1,11 @@
 
 NAME = so_long
 
-LIB = ./minilibx-linux
-LIBA = libmlx.a
+
+LIB = ./MLX42/build
+LIBA = libmlx42.a
+#LIB = ./minilibx-linux
+#LIBA = libmlx.a
 LIBFT = libft
 LIBFA = libft.a
 
@@ -19,7 +22,8 @@ all: so_long
 	$(CC) (CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 $(NAME): $(SRC) $(LIB)/$(LIBA) $(LIBFT)/$(LIBFA)
-	$(CC) $(CFLAGS) $(SRC) -L$(LIB) $(LIBFT)/$(LIBFA) -lmlx -L/usr/minilibx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) -L$(LIB) $(LIBFT)/$(LIBFA) -L/usr/MLX42 -lmlx42 -ldl -lglfw -lm -lpthread -o $(NAME)
+	#-lmlx -L/usr/minilibx_linux -lXext -lX11 -lm -lz
 
 $(LIB)/$(LIBA):
 	@$(MAKE) -C $(LIB)
