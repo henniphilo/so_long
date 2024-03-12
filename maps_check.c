@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/12 15:53:15 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:36:42 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,30 @@ int	check_map_ber(char *file)
 		perror("invalid file extension");
 	return(0);
 }
-char	**get_map(char *map)
+/*char	**get_map(t_program	*game)
 {
+	int	fd;
 
-
-}
+	fd = open("test.ber", O_RDONLY);
+	game->map = (get_next_line(fd));
+} */
 void	read_map(t_program *game, int x, int y)
 {
-	mlx_image_t	*wall = itsgiving_wall();
 
 	if(game->map[y][x] == '1')
 	{
-		mlx_image_to_window(game->mlx_pointer, wall,(x * SSIZE), (y * SSIZE));
+		mlx_image_to_window(game->mlx_pointer, game->img->wall,(x * SSIZE), (y * SSIZE));
 	}
 	else if(game->map[y][x] == 'C')
 	{
-		//collactable
+		mlx_image_to_window(game->mlx_pointer, game->img->treasure,(x * SSIZE), (y * SSIZE));
 	}
 	else if(game->map[y][x] == 'E')
 	{
-		//enemy pic
+		mlx_image_to_window(game->mlx_pointer, game->img->exit,(x * SSIZE), (y * SSIZE));
 	}
 	else
-		//floor
+		mlx_image_to_window(game->mlx_pointer, game->img->floor,(x * SSIZE), (y * SSIZE));
 
 }
 

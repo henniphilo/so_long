@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/12 15:52:20 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:36:02 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,33 @@
 # define	WIN_WIDTH	1920
 # define	SSIZE		16
 
+typedef struct s_image
+{
+	mlx_image_t	*wall;
+	mlx_image_t	*floor;
+	mlx_image_t	*player;
+	mlx_image_t	*treasure;
+	mlx_image_t	*exit;
+}	t_image;
 
 typedef struct s_program
 {
 	void	*mlx_pointer;
 	void	*window;
 	char	**map;
+	struct s_image	*img;
 }	t_program;
 
-char	**get_map(char *map);
+char	**get_map(t_program *game);
 int		check_map_ber(char *file);
-mlx_image_t	*itsgiving_wall();
+void	read_map(t_program *game, int x, int y);
+void	itsgiving_wall(t_program *game);
+void	itsgiving_floor(t_program *game);
+void	itsgiving_exit(t_program *game);
+void	itsgiving_treasure(t_program *game);
+void	player_no_one(t_program *game);
+void	img_space(t_program *game);
+
 
 
 

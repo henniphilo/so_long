@@ -6,7 +6,7 @@
 #    By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/02 15:58:16 by hwiemann          #+#    #+#              #
-#    Updated: 2023/05/23 17:12:36 by hwiemann         ###   ########.fr        #
+#    Updated: 2024/03/12 16:57:41 by hwiemann         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ ft_putendl_fd.c \
 ft_putnbr_fd.c \
 ft_printf.c \
 ft_printf_helper.c \
+get_next_line.c \
 
 BONUSFILES = ft_lstnew.c \
 ft_lstadd_front.c \
@@ -79,10 +80,10 @@ $(NAME):$(OBJ)
 	$(AR) $(NAME) $(OBJ)
 %.o: %.c
 	$(CC) $(FLAG) -c $< -o $@
-bonus: $(BONUSOBJS) $(HEADER) 
+bonus: $(BONUSOBJS) $(HEADER)
 	$(AR) $(NAME) $(BONUSOBJS)
 clean:
-	$(RM) $(OBJ) 
+	$(RM) $(OBJ)
 	$(RM) $(BONUSOBJS)
 fclean:clean
 	$(RM) $(NAME)
