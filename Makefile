@@ -19,7 +19,7 @@ SRC = *.c \
 all: so_long
 
 %.o: %.c
-	$(CC) (CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 $(NAME): $(SRC) $(LIB)/$(LIBA) $(LIBFT)/$(LIBFA)
 	$(CC) $(CFLAGS) $(SRC) -L$(LIB) $(LIBFT)/$(LIBFA) -L/usr/MLX42 -lmlx42 -ldl -lglfw -lm -lpthread -o $(NAME)
@@ -32,10 +32,12 @@ $(LIBFT)/$(LIBFA):
 	@$(MAKE) -C $(LIBFT)
 
 clean:
-	make -C $(LIB) $(LIBFT) clean
+	make -C $(LIB) clean
+	make -C $(LIBFT) clean
 
 fclean: clean
-	make -C $(LIB) $(LIBFT) fclean
+	make -C $(LIB) fclean
+	make -C $(LIBFT) fclean
 	$(RM) so_long
 re: fclean all
 
