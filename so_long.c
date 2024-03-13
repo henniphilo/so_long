@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/13 12:05:42 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:18:23 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_close()
 
 t_program	window()
 {
-	t_program		ptr;
+	t_program		ptr; // all stuff is stored here
 	// mlx_texture_t 	*texture;
 	// mlx_image_t		*image;
 
@@ -33,10 +33,13 @@ t_program	window()
 	// if(!(image = mlx_texture_to_image(ptr.mlx_pointer, texture)))
 	// 	exit(1);
 
-	if(!(looking_good(ptr.mlx_pointer)))
-		perror("nothing looks good");
+	// if(!(looking_good(ptr.mlx_pointer)))
+	// if(!(looking_good(&ptr)))
+	// 	perror("nothing looks good");
 
-	if(mlx_image_to_window(ptr.mlx_pointer, ptr.img->wall, 0, 0) < 0)
+	new_start(&ptr);
+
+	if(mlx_image_to_window(ptr.mlx_pointer, ptr.img.wall, 0, 0) < 0)
 		exit(1);
 
 	mlx_loop(ptr.mlx_pointer);
@@ -46,6 +49,7 @@ t_program	window()
 
 int	main()
 {
+
 	window();
 	return(0);
 }

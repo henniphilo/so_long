@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/13 11:59:52 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:06:55 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,26 @@ typedef struct s_program
 	void	*mlx_pointer;
 	void	*window;
 	char	**map;
-	t_image	*img;
+	t_image	img;
 	t_image	*old_img;
+	mlx_image_t	*wall2;
 }	t_program;
 
 char	**get_map(t_program *game);
 int		check_map_ber(char *file);
 void	read_map(t_program *game, int x, int y);
-void	itsgiving_wall(t_program game);
-void	itsgiving_floor(t_program game);
-void	itsgiving_exit(t_program game);
-void	itsgiving_treasure(t_program game);
-void	player_no_one(t_program game);
+// void	itsgiving_wall(t_program *game);
+// void	itsgiving_floor(t_program game);
+// void	itsgiving_exit(t_program game);
+// void	itsgiving_treasure(t_program game);
+// void	player_no_one(t_program game);
 //void	img_space(t_program *game);
-int		looking_good(t_program *game);
+//int		looking_good(t_program *game);
 void	clean_pics(t_program *game);
+int	walls_check(char **map);
+void new_start(t_program *game);
+
+
 
 
 
