@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/13 15:18:23 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:27:58 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ t_program	window()
 	// if(!(looking_good(&ptr)))
 	// 	perror("nothing looks good");
 
-	new_start(&ptr);
+	show_pics(&ptr);
 
-	if(mlx_image_to_window(ptr.mlx_pointer, ptr.img.wall, 0, 0) < 0)
+	if(mlx_image_to_window(ptr.mlx_pointer, ptr.img.treasure, 0, 0) < 0)
 		exit(1);
 
 	mlx_loop(ptr.mlx_pointer);

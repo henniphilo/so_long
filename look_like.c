@@ -1,89 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   look.c                                             :+:      :+:    :+:   */
+/*   look_like.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 15:38:37 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/13 15:15:29 by hwiemann         ###   ########.fr       */
+/*   Created: 2024/03/13 14:46:08 by hwiemann          #+#    #+#             */
+/*   Updated: 2024/03/13 15:30:15 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* void	img_space(t_program *game)
-{
-	if(!(game->img = ft_calloc(1, sizeof(t_image))))
-		perror("no space for pics");
-} */
 
-void	itsgiving_wall(t_program *game)
+void show_pics(t_program *game)
 {
 	mlx_texture_t 	*texture;
 
-	//vor allem noch speicher allocieren fuer texture?
-
-	//ft_calloc(1, sizeof(texture));
 	if(!(texture = mlx_load_png("Wall.png")))
-		perror("wall is shaking");
-	// ft_printf("wall was not shaking but: %p\n", game);
-	// ft_printf("img: %p\n", game->img);
-	// ft_printf("wall: %p\n", &(game->img.wall));
+		exit(1);
 	if(!(game->img.wall = mlx_texture_to_image(game->mlx_pointer, texture)))
-		perror("wall is crumbeling");
-	mlx_delete_texture(texture);
-}
-
-void	itsgiving_floor(t_program game)
-{
-	mlx_texture_t 	*texture;
-
+		exit(1);
 	if(!(texture = mlx_load_png("Floor.png")))
 		perror("floor is dirty");
-	if(!(game.img.floor = mlx_texture_to_image(game.mlx_pointer, texture)))
+	if(!(game->img.floor = mlx_texture_to_image(game->mlx_pointer, texture)))
 		perror("floor not clean");
-	mlx_delete_texture(texture);
-}
-void	itsgiving_exit(t_program game)
-{
-	mlx_texture_t 	*texture;
-
 	if(!(texture = mlx_load_png("Exit.png")))
 		perror("Exit says no");
-	if(!(game.img.exit = mlx_texture_to_image(game.mlx_pointer, texture)))
+	if(!(game->img.exit = mlx_texture_to_image(game->mlx_pointer, texture)))
 		perror("Exit no way");
-	mlx_delete_texture(texture);
-}
-void	itsgiving_treasure(t_program game)
-{
-	mlx_texture_t 	*texture;
-
 	if(!(texture = mlx_load_png("Treasure.png")))
 		perror("Collect not protact");
-	if(!(game.img.treasure = mlx_texture_to_image(game.mlx_pointer, texture)))
+	if(!(game->img.treasure = mlx_texture_to_image(game->mlx_pointer, texture)))
 		perror("Collect not found");
-	mlx_delete_texture(texture);
-}
-void	player_no_one(t_program game)
-{
-	mlx_texture_t 	*texture;
-
 	if(!(texture = mlx_load_png("Player.png")))
 		perror("Player No Zero");
-	if(!(game.img.player= mlx_texture_to_image(game.mlx_pointer, texture)))
+	if(!(game->img.player= mlx_texture_to_image(game->mlx_pointer, texture)))
 		perror("Player nowhere to be found");
 	mlx_delete_texture(texture);
-}
- int	looking_good(t_program *game)
-{
-	//img_space(*game);
-	// itsgiving_exit(*game);
-	// itsgiving_floor(*game);
-	// itsgiving_treasure(*game);
-	itsgiving_wall(game);
-	//player_no_one(*game);
-	return(0);
 }
 void	clean_pics(t_program *game)
 {
@@ -93,3 +47,8 @@ void	clean_pics(t_program *game)
 	mlx_delete_image(game->mlx_pointer, game->old_img->player);
 	mlx_delete_image(game->mlx_pointer, game->old_img->floor);
 }
+/* void	img_space(t_program *game)
+{
+	if(!(game->img = ft_calloc(1, sizeof(t_image))))
+		perror("no space for pics");
+} */
