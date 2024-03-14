@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/13 15:27:58 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:31:18 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,27 @@ t_program	window()
 
 	return(ptr);
 }
-
-int	main()
+/*
+void	game_init(t_program *game, char *map_file)
 {
+	//if(!(game->map = ft_calloc(sizeof(t_map), 1)))
+	check_map_ber(map_file);
+	get_map(game, );
+	map_init(game);
+	walls_check(game, game->map.map);
+} */
 
-	window();
+int	main(int argc, char **argv)
+{
+	t_program	game;
+
+	if(argc == 2)
+	{
+		if(!(game.mlx_pointer = mlx_init(WIN_WIDTH, WIN_HEIGHT, "hello again", true)))
+			exit(1);
+		open_map(&game, argv[0]);
+		//window();
+		mlx_loop(game.mlx_pointer);
+	}
 	return(0);
 }

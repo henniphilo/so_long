@@ -6,13 +6,13 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:56:15 by hwiemann          #+#    #+#             */
-/*   Updated: 2023/05/11 15:33:03 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:14:05 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/13 15:31:25 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:28:14 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	map_empty(char **map)
 	return(0);
 }
 
-int	walls_check(char **map)
+int	walls_check(t_program *game, char **map)
 {
 	int	line;
 	int	i;
@@ -57,26 +57,68 @@ int	walls_check(char **map)
 	}
 	return (0);
 }
-
-/*char	**get_map(t_program	*game)
+void	open_map(t_program *game, char *map_file)
 {
 	int	fd;
 
-	fd = open("test.ber", O_RDONLY);
-	game->map = (get_next_line(fd));
-} */
-void	read_map(t_program *game, int x, int y)
+	fd = open(map_file, O_RDONLY);
+
+	check_map_ber(map_file);
+	get_map(game, fd);
+	map_init(game);
+	walls_check(game, game->map.map);
+
+	close(fd);
+}
+void	get_map(t_program *game, int fd)
+{
+	char	*line_str;
+	int		i;
+
+	i = 0;
+	while(1)
+	{
+		if(!(line_str = get_next_line(fd)))
+			perror("map not readable") ;
+		game->map.width = ft_strlen(line_str);
+		game->map.map[i] = ft_strdup(line_str);
+		//free(line_str);
+		i++;
+	}
+	game->map.height = i;
+}
+
+void	map_init(t_program *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < game->map.height)
+	{
+		x = 0;
+		while (x < game->map.width)
+		{
+			interpret_map(game, x, y);
+			x++;
+		}
+		y++;
+	}
+}
+
+
+void	interpret_map(t_program *game, int x, int y)
 {
 
-	if(game->map[y][x] == '1')
+	if(game->map.map[y][x] == '1')
 	{
 		mlx_image_to_window(game->mlx_pointer, game->img.wall,(x * SSIZE), (y * SSIZE));
 	}
-	else if(game->map[y][x] == 'C')
+	else if(game->map.map[y][x] == 'C')
 	{
 		mlx_image_to_window(game->mlx_pointer, game->img.treasure,(x * SSIZE), (y * SSIZE));
 	}
-	else if(game->map[y][x] == 'E')
+	else if(game->map.map[y][x] == 'E')
 	{
 		mlx_image_to_window(game->mlx_pointer, game->img.exit,(x * SSIZE), (y * SSIZE));
 	}
