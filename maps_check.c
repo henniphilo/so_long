@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/18 14:30:41 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/18 18:52:54 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ int	walls_check(char **map)
 	}
 	return (0);
 }
-void	open_map(t_program *game, char *map_file)
+void	open_map(t_program *game)
 {
 	int	fd;
 
-	fd = open(map_file, O_RDONLY);
+	fd = open("test.ber", O_RDONLY);
 
-	check_map_ber(map_file);
+	//check_map_ber(map_file);
 	get_map(game, fd);
 	map_init(game);
-	walls_check(game->map.map);
-
+	if(walls_check(game->map.map) == 1)
+		perror("walls fail");
 	close(fd);
 }
 void	get_map(t_program *game, int fd)
@@ -82,7 +82,7 @@ void	get_map(t_program *game, int fd)
 			perror("map not readable") ;
 		game->map.width = ft_strlen(line_str);
 		game->map.map[i] = ft_strdup(line_str);
-		//free(line_str);
+		free(line_str);
 		i++;
 	}
 	game->map.height = i;

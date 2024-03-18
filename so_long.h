@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/18 14:24:03 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/18 18:52:34 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ void	interpret_map(t_program *game, int x, int y);
 void	clean_pics(t_program *game);
 void	show_pics(t_program *game);
 void	map_init(t_program *game);
-void	open_map(t_program *game, char *map_file);
+void	open_map(t_program *game);
+void	game_on(t_program *game);
+
 
 int		map_empty(char **map);
 int		check_map_ber(char *file);

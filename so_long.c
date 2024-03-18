@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/18 14:42:41 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/18 18:49:49 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ void	game_init(t_program *game, char *map_file)
 	map_init(game);
 	walls_check(game, game->map.map);
 } */
+void	game_on(t_program *game)
+{
+	if(!(game->mlx_pointer = mlx_init(WIN_WIDTH, WIN_HEIGHT, "hello again", true)))
+			perror("init error");
+	mlx_loop(game->mlx_pointer);
+}
+
 
 int	main(int argc, char **argv)
 {
@@ -63,11 +70,9 @@ int	main(int argc, char **argv)
 	if(argc == 2)
 	{
 		printf("in");
-		if(!(game.mlx_pointer = mlx_init(WIN_WIDTH, WIN_HEIGHT, "hello again", true)))
-			exit(1);
-		open_map(&game, argv[1]);
-		//window();
-		mlx_loop(game.mlx_pointer);
+		check_map_ber(argv[1]);
+		game_on(&game);
+		open_map(&game);
 	}
 	else
 		printf("nope");
