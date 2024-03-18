@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/14 12:28:14 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:30:41 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	map_empty(char **map)
 	return(0);
 }
 
-int	walls_check(t_program *game, char **map)
+int	walls_check(char **map)
 {
 	int	line;
 	int	i;
@@ -45,7 +45,7 @@ int	walls_check(t_program *game, char **map)
 		line++;
 	while(i < ft_strlen(map[0]))
 		{
-			if(map[line - 1] != '1' || map[0][i] != '1')
+			if(map[line - 1][0] != '1' || map[0][i] != '1')
 				return (1);
 			i++;
 		}
@@ -66,7 +66,7 @@ void	open_map(t_program *game, char *map_file)
 	check_map_ber(map_file);
 	get_map(game, fd);
 	map_init(game);
-	walls_check(game, game->map.map);
+	walls_check(game->map.map);
 
 	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/14 12:29:04 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:24:03 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	open_map(t_program *game, char *map_file);
 
 int		map_empty(char **map);
 int		check_map_ber(char *file);
-int		walls_check(t_program *game, char **map);
+int		walls_check(char **map);
 
 
 

@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/14 12:31:18 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:42:41 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,14 @@ int	main(int argc, char **argv)
 
 	if(argc == 2)
 	{
+		printf("in");
 		if(!(game.mlx_pointer = mlx_init(WIN_WIDTH, WIN_HEIGHT, "hello again", true)))
 			exit(1);
-		open_map(&game, argv[0]);
+		open_map(&game, argv[1]);
 		//window();
 		mlx_loop(game.mlx_pointer);
 	}
+	else
+		printf("nope");
 	return(0);
 }
