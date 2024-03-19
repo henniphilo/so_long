@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/18 18:49:49 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:18:09 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,9 @@ void	game_on(t_program *game)
 {
 	if(!(game->mlx_pointer = mlx_init(WIN_WIDTH, WIN_HEIGHT, "hello again", true)))
 			perror("init error");
-	mlx_loop(game->mlx_pointer);
 }
 
-
+/*
 int	main(int argc, char **argv)
 {
 	t_program	game;
@@ -73,8 +72,37 @@ int	main(int argc, char **argv)
 		check_map_ber(argv[1]);
 		game_on(&game);
 		open_map(&game);
+		mlx_loop(game.mlx_pointer);
+
 	}
 	else
 		printf("nope");
 	return(0);
+} */
+
+int	main(void)
+{
+	int		fd;
+	char	*line;
+
+	// Öffnen Sie eine Datei zum Lesen
+	fd = open("test.ber", O_RDONLY);
+	if (fd < 0)
+	{
+		perror("Fehler beim Öffnen der Datei");
+		return (1);
+	}
+
+	// Lesen Sie die Datei Zeile für Zeile und geben Sie sie auf dem Bildschirm aus
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s\n", line);
+		free(line); // Speicher freigeben, nachdem die Zeile ausgegeben wurde
+	}
+
+	// Schließen Sie die Datei
+	close(fd);
+
+	return (0);
 }
+

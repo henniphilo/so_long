@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:56:15 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/18 14:28:54 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:29:44 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strlen(char *s)
 	int	i;
 
 	i = 0;
+	if(s == NULL)
+		return(0);
 	while (*s != '\0')
 	{
 		i++;

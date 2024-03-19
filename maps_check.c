@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/18 18:52:54 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:15:06 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int	check_map_ber(char *file)
 		perror("invalid file extension");
 	return(0);
 }
+
+//map lesen und **maps mallocen , dafuer braucht es zeilen zaehlen
+
+
+
 int	map_empty(char **map)
 {
 	if(map[0])
@@ -62,30 +67,51 @@ void	open_map(t_program *game)
 	int	fd;
 
 	fd = open("test.ber", O_RDONLY);
-
+	if(fd < 0)
+		perror("fd open error");
 	//check_map_ber(map_file);
-	get_map(game, fd);
-	map_init(game);
-	if(walls_check(game->map.map) == 1)
-		perror("walls fail");
+	space_map(game, fd);
+//	get_map(game, fd);
+	// map_init(game);
+	// if(walls_check(game->map.map) == 1)
+	// 	perror("walls fail");
 	close(fd);
 }
+void	space_map(t_program *game, int fd)
+{
+	char	*line;
+	int		i = 0;
+
+	while((line = get_next_line(fd)) != NULL)
+	{
+		if(!(line))
+			perror("gnl problem");
+		free(line);
+		i++;
+	}
+	printf("map height: %d \n", i);
+	game->map.map = (char**)malloc(sizeof(line) * i);
+	game->map.height = i;
+}
+
 void	get_map(t_program *game, int fd)
 {
 	char	*line_str;
 	int		i;
 
+	line_str = NULL;
 	i = 0;
 	while(1)
 	{
-		if(!(line_str = get_next_line(fd)))
+		line_str = get_next_line(fd);
+		if(!(line_str))
 			perror("map not readable") ;
 		game->map.width = ft_strlen(line_str);
 		game->map.map[i] = ft_strdup(line_str);
 		free(line_str);
 		i++;
 	}
-	game->map.height = i;
+	//game->map.height = i;
 }
 
 void	map_init(t_program *game)
