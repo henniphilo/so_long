@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:32:39 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/18 14:28:46 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:03:18 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
-#endif
+# endif
 
 typedef struct s_list
 {
@@ -48,7 +48,7 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *to, const void *from, size_t size);
 void	*ft_memmove(void *dest, const void *src, size_t size);
 
-int		ft_strlen(char *s);
+int		ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 int		ft_toupper(int c);

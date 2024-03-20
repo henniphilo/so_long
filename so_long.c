@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/19 11:18:09 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:06:03 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	game_on(t_program *game)
 			perror("init error");
 }
 
-/*
 int	main(int argc, char **argv)
 {
 	t_program	game;
@@ -78,12 +77,12 @@ int	main(int argc, char **argv)
 	else
 		printf("nope");
 	return(0);
-} */
-
+}
+/*
 int	main(void)
 {
 	int		fd;
-	char	*line;
+	char	*line = NULL;
 
 	// Öffnen Sie eine Datei zum Lesen
 	fd = open("test.ber", O_RDONLY);
@@ -104,5 +103,5 @@ int	main(void)
 	close(fd);
 
 	return (0);
-}
+} */
 

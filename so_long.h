@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/19 11:07:08 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/20 10:49:17 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	map_init(t_program *game);
 void	open_map(t_program *game);
 void	game_on(t_program *game);
 void	space_map(t_program *game, int fd);
+char	*get_next_line(int fd);
+
 
 
 int		map_empty(char **map);
