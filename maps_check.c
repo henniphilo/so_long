@@ -6,11 +6,27 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/20 14:00:14 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:35:12 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	open_map(t_program *game)
+{
+	int	fd;
+
+	fd = open("test.ber", O_RDONLY);
+	if(fd < 0)
+		perror("fd open error");
+	printf("fd nach open %d \n", fd);
+	check_map_ber("test.ber");
+	space_map(game, fd); //map.map gemalloct und height initialisiert
+	close(fd);
+	fd = open("test.ber", O_RDONLY);
+	get_map(game, fd); //width initialisiert und in map.map kopiert damm walls check
+	close(fd);
+}
 
 int	check_map_ber(char *file)
 {
@@ -28,9 +44,6 @@ int	check_map_ber(char *file)
 	return(0);
 }
 
-//map lesen und **maps mallocen , dafuer braucht es zeilen zaehlen
-
-
 
 int	map_empty(char **map)
 {
@@ -39,48 +52,44 @@ int	map_empty(char **map)
 	return(0);
 }
 
-int	walls_check(char **map)
+int	walls_check(t_program *game)
 {
-	int	line;
+	char	**map = game->map.map;
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	line = 0;
-	while(map[line])
-		line++;
-	while(i < ft_strlen(map[0]))
-		{
-			if(map[line - 1][0] != '1' || map[0][i] != '1')
-				return (1);
-			i++;
-		}
-	while(j < (line - 1))
+
+	printf("map y x: %c \n" , map[0][24]);
+	while(i < game->map.width)
 	{
-		if(map[j][0] != '1' || map[ft_strlen(map[0])][0] != '1')
+		printf("walls i: %d \n", i);
+		if(map[(game->map.height) - 1][0] != '1' || map[0][i] != '1'
+			|| map[game->map.height - 1][i] != '1')
+			{
+				perror("error walls i");
 				return (1);
-			j++;
+			}
+		i++;
+	}
+	while(j < game->map.height)
+	{
+		printf("walls j: %d \n", j);
+		if(map[j][0] != '1' || map[0][(game->map.width) - 1] != '1'
+			|| map[j][game->map.width - 1] != '1')
+			{
+				perror("error walls j");
+				return (1);
+			}
+		j++;
 	}
 	return (0);
 }
-void	open_map(t_program *game)
-{
-	int	fd;
 
-	fd = open("test.ber", O_RDONLY);
-	if(fd < 0)
-		perror("fd open error");
-	printf("fd nach open %d \n", fd);
-	check_map_ber("test.ber");
-	space_map(game, fd);
-	close(fd);
-	fd = open("test.ber", O_RDONLY);
-	get_map(game, fd);
-	// if(walls_check(game->map.map) == 1)
-	// 	perror("walls fail");
-	close(fd);
-}
+
+
+
 void	space_map(t_program *game, int fd)
 {
 	char	*line;
@@ -89,7 +98,7 @@ void	space_map(t_program *game, int fd)
 	printf("fd in spac %d \n", fd);
 	while((line = get_next_line(fd)) != NULL)
 	{
-		printf("while space line: %s \n", line);
+	//	printf("while space line: %s \n", line);
 		if(!(line))
 			perror("gnl problem");
 		free(line);
@@ -98,6 +107,7 @@ void	space_map(t_program *game, int fd)
 	game->map.map = (char**)malloc(sizeof(line) * i);
 	game->map.height = i;
 	printf("map height: %d \n", game->map.height);
+
 }
 
 void	get_map(t_program *game, int fd)
@@ -110,7 +120,6 @@ void	get_map(t_program *game, int fd)
 
 	while((line_str = get_next_line(fd)) != NULL)
 	{
-		printf("in get map loop \n");
 		// if(!(line_str))
 		// {
 		// 		perror("map not readable") ;
@@ -122,8 +131,12 @@ void	get_map(t_program *game, int fd)
 		free(line_str);
 		i++;
 	}
-	printf("map width : %d \n", game->map.width);
-	//game->map.height = i;
+	printf(" width : %d \n", game->map.width);
+	if((walls_check(game)) == 1)
+	{
+		perror("walls fail");
+		exit(1);
+	}
 }
 
 void	map_init(t_program *game)
@@ -147,8 +160,8 @@ void	map_init(t_program *game)
 
 void	interpret_map(t_program *game, int x, int y)
 {
-	printf(" interpret map y : %d \n", y);
-	printf(" interpret map x : %d \n", x);
+	// printf(" interpret map y : %d \n", y);
+	// printf(" interpret map x : %d \n", x);
 
 	if(game->map.map[y][x] == '1')
 	{

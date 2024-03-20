@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/20 13:55:09 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:02:13 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #include <stdio.h>
 
 
-# define	WIN_HEIGHT	600
-# define	WIN_WIDTH	900
+# define	WIN_HEIGHT	16*13
+# define	WIN_WIDTH	16*25 // initialize in code according to map
 # define	SSIZE		16
 
 typedef struct s_image
@@ -63,7 +63,7 @@ char	*get_next_line(int fd);
 
 int		map_empty(char **map);
 int		check_map_ber(char *file);
-int		walls_check(char **map);
+int		walls_check(t_program *game);
 
 
 

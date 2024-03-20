@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/20 13:51:25 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:10:16 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	game_init(t_program *game, char *map_file)
 void	game_on(t_program *game)
 {
 	printf("game on \n");
-	if(!(game->mlx_pointer = mlx_init(WIN_WIDTH, WIN_HEIGHT, "hello again", true)))
+	if(!(game->mlx_pointer = mlx_init(WIN_WIDTH, WIN_HEIGHT, "hello again", false)))
 			perror("init error");
 }
 
@@ -68,24 +68,22 @@ int	main(int argc, char **argv)
 
 	if(argc == 2)
 	{
-		printf("in");
 		check_map_ber(argv[1]);
-		game_on(&game);
-		show_pics(&game);
+		game_on(&game); //initialisiert game pointer
+		show_pics(&game); //initialisiert bilder
 		open_map(&game);
 		map_init(&game);
-	//	mlx_image_to_window(game.mlx_pointer, game.img.wall, 0, 0);
-			//exit(1);
-
 	//	window();
 
 		mlx_loop(game.mlx_pointer);
-
 	}
 	else
 		printf("nope");
 	return(0);
 }
+
+
+
 /*
 int	main(void)
 {
