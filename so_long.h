@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/20 13:44:33 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:55:09 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,10 @@ typedef struct s_map
 typedef struct s_program
 {
 	mlx_t	*mlx_pointer;
-	void	*window;
 	t_map	map;
 	t_image	img;
 	t_image	*old_img;
-	mlx_image_t	*wall2;
+//	mlx_image_t	*wall2;
 }	t_program;
 
 void	get_map(t_program *game, int fd);

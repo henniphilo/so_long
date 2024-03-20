@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:46:08 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/20 13:39:15 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:55:59 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void show_pics(t_program *game)
 {
 	mlx_texture_t 	*texture;
 
-	texture = mlx_load_png("./looks/Wall.png");
-	if(!texture)
+	if(!(texture = mlx_load_png("./looks/Wall.png")))
 		perror("wall instabil\n");
 	if(!(game->img.wall = mlx_texture_to_image(game->mlx_pointer, texture)))
 		perror("wall is shaking");
