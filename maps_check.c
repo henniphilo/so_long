@@ -6,24 +6,23 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/20 16:35:12 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:43:23 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	open_map(t_program *game)
+void	open_map(t_program *game, char *file)
 {
 	int	fd;
 
-	fd = open("test.ber", O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if(fd < 0)
 		perror("fd open error");
-	printf("fd nach open %d \n", fd);
-	check_map_ber("test.ber");
+	check_map_ber(file);
 	space_map(game, fd); //map.map gemalloct und height initialisiert
 	close(fd);
-	fd = open("test.ber", O_RDONLY);
+	fd = open(file, O_RDONLY);
 	get_map(game, fd); //width initialisiert und in map.map kopiert damm walls check
 	close(fd);
 }
@@ -60,34 +59,22 @@ int	walls_check(t_program *game)
 
 	i = 0;
 	j = 0;
-
-	printf("map y x: %c \n" , map[0][24]);
 	while(i < game->map.width)
 	{
-		printf("walls i: %d \n", i);
 		if(map[(game->map.height) - 1][0] != '1' || map[0][i] != '1'
 			|| map[game->map.height - 1][i] != '1')
-			{
-				perror("error walls i");
 				return (1);
-			}
 		i++;
 	}
 	while(j < game->map.height)
 	{
-		printf("walls j: %d \n", j);
 		if(map[j][0] != '1' || map[0][(game->map.width) - 1] != '1'
 			|| map[j][game->map.width - 1] != '1')
-			{
-				perror("error walls j");
 				return (1);
-			}
 		j++;
 	}
 	return (0);
 }
-
-
 
 
 void	space_map(t_program *game, int fd)
@@ -98,7 +85,6 @@ void	space_map(t_program *game, int fd)
 	printf("fd in spac %d \n", fd);
 	while((line = get_next_line(fd)) != NULL)
 	{
-	//	printf("while space line: %s \n", line);
 		if(!(line))
 			perror("gnl problem");
 		free(line);
@@ -116,8 +102,6 @@ void	get_map(t_program *game, int fd)
 	int		i;
 
 	i = 0;
-	printf("get map fd %d\n", fd);
-
 	while((line_str = get_next_line(fd)) != NULL)
 	{
 		// if(!(line_str))
@@ -160,9 +144,6 @@ void	map_init(t_program *game)
 
 void	interpret_map(t_program *game, int x, int y)
 {
-	// printf(" interpret map y : %d \n", y);
-	// printf(" interpret map x : %d \n", x);
-
 	if(game->map.map[y][x] == '1')
 	{
 		mlx_image_to_window(game->mlx_pointer, game->img.wall,(x * SSIZE), (y * SSIZE));

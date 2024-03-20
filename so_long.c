@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/20 16:10:16 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:44:38 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,15 @@ void	game_on(t_program *game)
 int	main(int argc, char **argv)
 {
 	t_program	game;
+	char		*file;
 
 	if(argc == 2)
 	{
-		check_map_ber(argv[1]);
+		file = argv[1];
+		check_map_ber(file);
 		game_on(&game); //initialisiert game pointer
 		show_pics(&game); //initialisiert bilder
-		open_map(&game);
+		open_map(&game, file);
 		map_init(&game);
 	//	window();
 
