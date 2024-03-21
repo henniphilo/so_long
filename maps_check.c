@@ -6,11 +6,15 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/20 16:43:23 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/21 10:29:48 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+//noch checken ob alle anwesend sind 1 e p 0 c
+//checken ob es erfuellbaren weg gibt
+//moves zaehlen
 
 void	open_map(t_program *game, char *file)
 {

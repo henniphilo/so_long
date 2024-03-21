@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/20 16:44:38 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/21 10:45:21 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,11 @@ t_program	window()
 
 	return(ptr);
 }
-/*
-void	game_init(t_program *game, char *map_file)
-{
-	//if(!(game->map = ft_calloc(sizeof(t_map), 1)))
-	check_map_ber(map_file);
-	get_map(game, );
-	map_init(game);
-	walls_check(game, game->map.map);
-} */
+
 void	game_on(t_program *game)
 {
 	printf("game on \n");
-	if(!(game->mlx_pointer = mlx_init(WIN_WIDTH, WIN_HEIGHT, "hello again", false)))
+	if(!(game->mlx_pointer = mlx_init((SSIZE * game->map.width),(SSIZE * game->map.height), "hello again", false)))
 			perror("init error");
 }
 
@@ -71,13 +63,15 @@ int	main(int argc, char **argv)
 	{
 		file = argv[1];
 		check_map_ber(file);
+		open_map(&game, file);
 		game_on(&game); //initialisiert game pointer
 		show_pics(&game); //initialisiert bilder
-		open_map(&game, file);
-		map_init(&game);
+		map_init(&game); //
 	//	window();
 
 		mlx_loop(game.mlx_pointer);
+		clean_pics(&game);
+		mlx_terminate(game.mlx_pointer);
 	}
 	else
 		printf("nope");
@@ -86,30 +80,4 @@ int	main(int argc, char **argv)
 
 
 
-/*
-int	main(void)
-{
-	int		fd;
-	char	*line = NULL;
-
-	// Öffnen Sie eine Datei zum Lesen
-	fd = open("test.ber", O_RDONLY);
-	if (fd < 0)
-	{
-		perror("Fehler beim Öffnen der Datei");
-		return (1);
-	}
-
-	// Lesen Sie die Datei Zeile für Zeile und geben Sie sie auf dem Bildschirm aus
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		printf("%s\n", line);
-		free(line); // Speicher freigeben, nachdem die Zeile ausgegeben wurde
-	}
-
-	// Schließen Sie die Datei
-	close(fd);
-
-	return (0);
-} */
 
