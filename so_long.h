@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/21 10:38:10 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:46:27 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@
 #include <stddef.h>
 #include <stdio.h>
 
-
-# define	WIN_HEIGHT	16*13
-# define	WIN_WIDTH	16*25 // initialize in code according to map
-# define	SSIZE		16
+# define	SSIZE		31
 
 typedef struct s_image
 {
@@ -36,13 +33,17 @@ typedef struct s_image
 typedef struct s_sprite
 {
 	t_image		look;
+	int			pos_x;
+	int			pos_y;
 }	t_sprite;
 
 typedef struct s_map
 {
-	char	**map;
-	int		height;
-	int		width;
+	char		**map;
+	int			height;
+	int			width;
+	int			moves;
+	t_sprite	player;
 }	t_map;
 
 typedef struct s_program
@@ -62,14 +63,12 @@ void	map_init(t_program *game);
 void	open_map(t_program *game, char *file);
 void	game_on(t_program *game);
 void	space_map(t_program *game, int fd);
+void	key_hook(mlx_key_data_t key, t_program *game);
 char	*get_next_line(int fd);
-
-
 
 int		map_empty(char **map);
 int		check_map_ber(char *file);
 int		walls_check(t_program *game);
-
 
 
 #endif

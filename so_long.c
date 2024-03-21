@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/21 10:45:21 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:48:05 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_close()
 	exit(0);
 }
 
-
+/*
 t_program	window()
 {
 	t_program		ptr; // all stuff is stored here
@@ -45,7 +45,7 @@ t_program	window()
 	mlx_loop(ptr.mlx_pointer);
 
 	return(ptr);
-}
+} */
 
 void	game_on(t_program *game)
 {
@@ -62,13 +62,11 @@ int	main(int argc, char **argv)
 	if(argc == 2)
 	{
 		file = argv[1];
-		check_map_ber(file);
 		open_map(&game, file);
 		game_on(&game); //initialisiert game pointer
 		show_pics(&game); //initialisiert bilder
 		map_init(&game); //
-	//	window();
-
+		key_hook( , game);
 		mlx_loop(game.mlx_pointer);
 		clean_pics(&game);
 		mlx_terminate(game.mlx_pointer);

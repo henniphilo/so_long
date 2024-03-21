@@ -7,6 +7,7 @@
 		"span": "c",
 		"pushswap.h": "c",
 		"cstring": "c",
-		"typeinfo": "c"
+		"typeinfo": "c",
+		"so_long.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/21 10:29:48 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:42:16 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,8 @@ void	interpret_map(t_program *game, int x, int y)
 	}
 	else if(game->map.map[y][x] == 'P')
 	{
+		game->map.player.pos_y = y;
+		game->map.player.pos_x = x;
 		mlx_image_to_window(game->mlx_pointer, game->img.player,(x * SSIZE), (y * SSIZE));
 	}
 	else
