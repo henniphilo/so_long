@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/21 11:46:27 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/22 10:19:01 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	map_init(t_program *game);
 void	open_map(t_program *game, char *file);
 void	game_on(t_program *game);
 void	space_map(t_program *game, int fd);
-void	key_hook(mlx_key_data_t key, t_program *game);
+void	key_hook(mlx_key_data_t key, void *ptr);
 char	*get_next_line(int fd);
 
 int		map_empty(char **map);
