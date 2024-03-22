@@ -6,13 +6,12 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/22 16:29:58 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:55:17 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-//noch checken ob alle anwesend sind 1 e p 0 c
 //checken ob es erfuellbaren weg gibt
 
 void	open_map(t_program *game, char *file)
@@ -28,6 +27,7 @@ void	open_map(t_program *game, char *file)
 	fd = open(file, O_RDONLY);
 	get_map(game, fd); //width initialisiert und in map.map kopiert damm walls check
 	close(fd);
+	check_path(game);void
 }
 
 int	check_map_ber(char *file)
@@ -42,7 +42,7 @@ int	check_map_ber(char *file)
 		|| file[i - 3] != '.')
 		perror("invalid file extension");
 	else
-		printf("map check done\n");
+		printf("map.ber check done\n");
 	return(0);
 }
 
@@ -191,3 +191,31 @@ void	count_CPE(t_program *game, int x, int y)
 		printf("found a player \n");
 	}
 }
+
+int	check_map_possible(t_program *game)
+{
+	if(game->count.player_count != 1)
+		perror("Not enough Player \n");
+	if(game->count.treasures < 1)
+		perror("Nothing to win here \n");
+	if(game->count.exit_count != 1)
+		perror("No exit strategy \n");
+	return(0);
+}
+
+int	check_path(char **map)
+{
+	t_program	*game;
+
+	map = game->map.map;
+	if(check_map_possible(game) == 0)
+
+	//wenn c oder e oder p von 1 umschlossen dann nicht moeglich
+
+
+
+
+
+}
+
+
