@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/22 16:50:51 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:46:48 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,9 @@ char	*get_next_line(int fd);
 void	check_end(t_program *game);
 void	end_game(t_program *game);
 void	count_CPE(t_program *game, int x, int y);
+void	flood_path(t_program *game, int x, int y, int c);
 
-
+int		check_path(t_program *game, int x, int y, int c);
 int		check_map_possible(t_program *game);
 int		map_empty(char **map);
 int		check_map_ber(char *file);
