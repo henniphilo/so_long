@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/22 13:17:15 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:29:58 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 //noch checken ob alle anwesend sind 1 e p 0 c
 //checken ob es erfuellbaren weg gibt
-//moves zaehlen
 
 void	open_map(t_program *game, char *file)
 {
@@ -86,7 +85,7 @@ void	space_map(t_program *game, int fd)
 	char	*line;
 	int		i = 0;
 
-	printf("fd in spac %d \n", fd);
+//	printf("fd in spac %d \n", fd);
 	while((line = get_next_line(fd)) != NULL)
 	{
 		if(!(line))
@@ -96,7 +95,7 @@ void	space_map(t_program *game, int fd)
 	}
 	game->map.map = (char**)malloc(sizeof(line) * i);
 	game->map.height = i;
-	printf("map height: %d \n", game->map.height);
+//	printf("map height: %d \n", game->map.height);
 
 }
 
@@ -113,13 +112,11 @@ void	get_map(t_program *game, int fd)
 		// 		perror("map not readable") ;
 		// 		exit(1);
 		// }
-//		printf("in get map line %s . \n", line_str);
 		game->map.width = (ft_strlen(line_str) - 1);
 		game->map.map[i] = ft_strdup(line_str);
 		free(line_str);
 		i++;
 	}
-	//printf(" width : %d \n", game->map.width);
 	if((walls_check(game)) == 1)
 	{
 		perror("walls fail");
@@ -131,7 +128,10 @@ void	map_init(t_program *game)
 {
 	int	x;
 	int	y;
-	game->count = 0;
+	game->count.step_count = 0;
+	game->count.treasures = 0;
+	game->count.player_count = 0;
+	game->count.exit_count = 0;
 
 	y = 0;
 	while (y < game->map.height)
@@ -140,6 +140,7 @@ void	map_init(t_program *game)
 		while (x < game->map.width)
 		{
 			interpret_map(game, x, y);
+			count_CPE(game, x, y);
 			x++;
 		}
 		y++;
@@ -165,13 +166,28 @@ void	interpret_map(t_program *game, int x, int y)
 	{
 		game->map.player.pos_y = y;
 		game->map.player.pos_x = x;
-		printf("position of P in maps: [%d] [%d] \n",game->map.player.pos_y, game->map.player.pos_x);
-
 		mlx_image_to_window(game->mlx_pointer, game->img.player,(x * SSIZE), (y * SSIZE));
-
 	}
 	else
 		mlx_image_to_window(game->mlx_pointer, game->img.floor,(x * SSIZE), (y * SSIZE));
-
 }
 
+void	count_CPE(t_program *game, int x, int y)
+{
+
+	if(game->map.map[y][x] == 'C')
+	{
+		game->count.treasures += 1;
+		printf("found a treasure %d \n", game->count.treasures);
+	}
+	else if(game->map.map[y][x] == 'E')
+	{
+		game->count.exit_count += 1;
+		printf("found an Exit \n");
+	}
+	else if(game->map.map[y][x] == 'P')
+	{
+		game->count.player_count += 1;
+		printf("found a player \n");
+	}
+}

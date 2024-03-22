@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:46:08 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/21 10:03:37 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:18:30 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,10 @@ void show_pics(t_program *game)
 }
 void	clean_pics(t_program *game)
 {
+	printf("cleaning pics \n");
 	mlx_delete_image(game->mlx_pointer, game->img.exit);
 	mlx_delete_image(game->mlx_pointer, game->img.wall);
 	mlx_delete_image(game->mlx_pointer, game->img.treasure);
 	mlx_delete_image(game->mlx_pointer, game->img.player);
 	mlx_delete_image(game->mlx_pointer, game->img.floor);
 }
-/* void	img_space(t_program *game)
-{
-	if(!(game->img = ft_calloc(1, sizeof(t_image))))
-		perror("no space for pics");
-} */

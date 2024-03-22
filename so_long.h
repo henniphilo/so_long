@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/22 13:09:47 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:34:00 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,22 @@ typedef struct s_map
 	t_sprite	player;
 }	t_map;
 
+typedef struct s_count
+{
+	int			step_count;
+	int			collects;
+	int			treasures;
+	int			player_count;
+	int			exit_count;
+}	t_count;
+
 typedef struct s_program
 {
 	mlx_t		*mlx_pointer;
 	t_map		map;
 	t_image		img;
 	t_sprite	sprite;
-	int			count;
-	int			collects;
-
+	t_count		count;
 }	t_program;
 
 void	get_map(t_program *game, int fd);
@@ -68,6 +75,9 @@ void	space_map(t_program *game, int fd);
 void	key_hook(mlx_key_data_t key, void *ptr);
 void	print_count(t_program *game);
 char	*get_next_line(int fd);
+void	check_end(t_program *game);
+void	end_game(t_program *game);
+void	count_CPE(t_program *game, int x, int y);
 
 int		map_empty(char **map);
 int		check_map_ber(char *file);

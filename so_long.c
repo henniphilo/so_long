@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/22 13:19:52 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:33:11 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,36 +16,6 @@ int	ft_close()
 {
 	exit(0);
 }
-
-/*
-t_program	window()
-{
-	t_program		ptr; // all stuff is stored here
-	// mlx_texture_t 	*texture;
-	// mlx_image_t		*image;
-
-	if(!(ptr.mlx_pointer = mlx_init(WIN_WIDTH, WIN_HEIGHT, "hello again", true)))
-		exit(1);
-
-	// if(!(texture = mlx_load_png("Wall.png")))
-	// 	exit(1);
-
-	// if(!(image = mlx_texture_to_image(ptr.mlx_pointer, texture)))
-	// 	exit(1);
-
-	// if(!(looking_good(ptr.mlx_pointer)))
-	// if(!(looking_good(&ptr)))
-	// 	perror("nothing looks good");
-
-	show_pics(&ptr);
-
-	if(mlx_image_to_window(ptr.mlx_pointer, ptr.img.treasure, 0, 0) < 0)
-		exit(1);
-
-	mlx_loop(ptr.mlx_pointer);
-
-	return(ptr);
-} */
 
 static void	hook(void *ptr)
 {
@@ -74,6 +44,9 @@ int	main(int argc, char **argv)
 		game_on(&game); //initialisiert game pointer
 		show_pics(&game); //initialisiert bilder
 		map_init(&game);
+		printf("Treasure to collect: %d \n", game.count.treasures);
+		printf("Player in game: %d \n", game.count.player_count);
+
 		mlx_loop_hook(game.mlx_pointer, &hook, &game);
 		mlx_key_hook(game.mlx_pointer, &key_hook, &game);
 	//	print_count(&game);
@@ -85,7 +58,3 @@ int	main(int argc, char **argv)
 		printf("nope");
 	return(0);
 }
-
-
-
-
