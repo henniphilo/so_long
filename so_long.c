@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/22 10:54:40 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:19:52 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	main(int argc, char **argv)
 		map_init(&game);
 		mlx_loop_hook(game.mlx_pointer, &hook, &game);
 		mlx_key_hook(game.mlx_pointer, &key_hook, &game);
+	//	print_count(&game);
 		mlx_loop(game.mlx_pointer);
 		clean_pics(&game);
 		mlx_terminate(game.mlx_pointer);

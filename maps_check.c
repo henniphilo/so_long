@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/22 10:52:49 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:17:15 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,13 @@ void	get_map(t_program *game, int fd)
 		// 		perror("map not readable") ;
 		// 		exit(1);
 		// }
-		printf("in get map line %s . \n", line_str);
+//		printf("in get map line %s . \n", line_str);
 		game->map.width = (ft_strlen(line_str) - 1);
 		game->map.map[i] = ft_strdup(line_str);
 		free(line_str);
 		i++;
 	}
-	printf(" width : %d \n", game->map.width);
+	//printf(" width : %d \n", game->map.width);
 	if((walls_check(game)) == 1)
 	{
 		perror("walls fail");
@@ -131,6 +131,7 @@ void	map_init(t_program *game)
 {
 	int	x;
 	int	y;
+	game->count = 0;
 
 	y = 0;
 	while (y < game->map.height)
@@ -167,6 +168,7 @@ void	interpret_map(t_program *game, int x, int y)
 		printf("position of P in maps: [%d] [%d] \n",game->map.player.pos_y, game->map.player.pos_x);
 
 		mlx_image_to_window(game->mlx_pointer, game->img.player,(x * SSIZE), (y * SSIZE));
+
 	}
 	else
 		mlx_image_to_window(game->mlx_pointer, game->img.floor,(x * SSIZE), (y * SSIZE));
