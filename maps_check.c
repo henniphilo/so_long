@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/22 17:48:10 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:52:19 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	open_map(t_program *game, char *file)
 	fd = open(file, O_RDONLY);
 	get_map(game, fd); //width initialisiert und in map.map kopiert damm walls check
 	close(fd);
-	if(check_map_possible(game) == 0)
-		check_path(game, 0, 0, game->count.treasures);
 }
 
 int	check_map_ber(char *file)
@@ -204,18 +202,20 @@ int	check_map_possible(t_program *game)
 	return(0);
 }
 
-void	flood_path(t_program *game, int x, int y, int c)
+int	flood_path(t_program *game, int x, int y, int *c)
 {
 	if(x < 0 || x >= game->map.width || y < 0 || y >= game->map.height
 		|| game->map.map[y][x] == 'O' || game->map.map[y][x] == '1'
 		|| game->map.map[y][x] == 'c' || game->map.map[y][x] == 'E')
 	{
-		if(game->map.map[y][x] == 'E')
-			return ;
+	 	if(game->map.map[y][x] == 'E')
+	 		return (1);
+		return(0);
 	}
+
 	if(game->map.map[y][x] == 'C')
 	{
-		c--;
+		(*c)--;
 		game->map.map[y][x] = 'c';
 	}
 	else if(game->map.map[y][x] == '0')
@@ -224,30 +224,35 @@ void	flood_path(t_program *game, int x, int y, int c)
 	flood_path(game, x, y - 1, c);
 	flood_path(game, x + 1, y, c);
 	flood_path(game, x - 1, y, c);
+	return(0);
 }
 
 int		check_path(t_program *game, int x, int y, int c)
 {
-	flood_path(game, x, y, c);
+	printf("ausgangs y x: [%d][%d] \n", y, x);
+	flood_path(game, x, y, &c);
 
-	while(x <= game->map.width)
+	while(y < game->map.height)
 	{
-		while(y <= game->map.height)
+		while(x < game->map.width)
 		{
 			if(game->map.map[y][x] != 'c' && game->map.map[y][x] != 'P'
 				&& game->map.map[y][x] != 'O' && game->map.map[y][x] != 'E'
 				&& game->map.map[y][x] != '1')
+				{
+					printf("es hapert hier [%d][%d]", y, x);
 					return(1);
+				}
 			else
 			{
 				if(game->map.map[y][x] == 'c')
 					game->map.map[y][x] = 'C';
 				else if(game->map.map[y][x] == 'O')
 					game->map.map[y][x] = '0';
-				y++;
+				x++;
 			}
 		}
-		x++;
+		y++;
 	}
 	return(0);
 }

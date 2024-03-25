@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/22 16:33:11 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:13:28 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,18 @@ int	main(int argc, char **argv)
 		map_init(&game);
 		printf("Treasure to collect: %d \n", game.count.treasures);
 		printf("Player in game: %d \n", game.count.player_count);
+		check_map_possible(&game);
+		if(check_path(&game, game.map.player.pos_x, game.map.player.pos_y, game.count.treasures) == 1)
+			end_game(&game);
 
+		for (int i = 0; i < game.map.height; i++) {
+        for (int j = 0; j < game.map.width; j++) {
+            printf("%c ", game.map.map[i][j]);
+        }
+        printf("\n");
+    }
 		mlx_loop_hook(game.mlx_pointer, &hook, &game);
 		mlx_key_hook(game.mlx_pointer, &key_hook, &game);
-	//	print_count(&game);
 		mlx_loop(game.mlx_pointer);
 		clean_pics(&game);
 		mlx_terminate(game.mlx_pointer);
