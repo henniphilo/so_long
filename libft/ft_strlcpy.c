@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:32:53 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/19 11:28:27 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 22:33:08 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	i;
 
 	i = 0;
-	if(src)
+	if (src)
 	{
 		if (size == 0)
 			return (ft_strlen(src));

@@ -6,16 +6,11 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 20:28:56 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 22:42:07 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	ft_close()
-{
-	exit(0);
-}
 
 static void	hook(void *ptr)
 {
@@ -26,29 +21,32 @@ static void	hook(void *ptr)
 
 void	game_on(t_program *game)
 {
-	printf("Game On\n Collect all blue tiles \n");
-	if(!(game->mlx_pointer = mlx_init((SSIZE * game->map.width),(SSIZE * game->map.height), "hello again", false)))
-			perror("Error \n init error");
-
+	ft_printf("Game On\n Collect all blue tiles \n");
+	game->mlx_pointer = mlx_init((SSIZE * game->map.width),
+			(SSIZE * game->map.height), "hello again", false);
+	if (!(game->mlx_pointer))
+		perror("Error \n init error");
 }
+
 void	free_map(t_program *game)
 {
 	int	i;
 
 	i = 0;
-	while(i < game->map.height)
+	while (i < game->map.height)
 	{
 		free(game->map.map[i]);
 		i++;
 	}
 	free(game->map.map);
 }
+
 int	main(int argc, char **argv)
 {
 	t_program	game;
 	char		*file;
 
-	if(argc == 2)
+	if (argc == 2)
 	{
 		file = argv[1];
 		open_map(&game, file);
@@ -57,7 +55,8 @@ int	main(int argc, char **argv)
 		show_pic2(&game);
 		map_init(&game);
 		check_correct_CPE(&game);
-		if(check_path(&game, game.map.player.pos_x, game.map.player.pos_y, game.count.treasures) == 1)
+		if (check_path(&game, game.map.player.pos_x,
+				game.map.player.pos_y, game.count.treasures) == 1)
 		{
 			perror("Error \n fd path not valid \n");
 			end_game(&game);
@@ -71,5 +70,5 @@ int	main(int argc, char **argv)
 	}
 	else
 		perror("Error \n Select valid map \n");
-	return(0);
+	return (0);
 }

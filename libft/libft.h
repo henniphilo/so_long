@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:32:39 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/20 11:03:18 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 22:32:02 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
-
-/*get_next_line*/
-
-//size_t	ft_strlen(const char *s);
-//size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-char	*get_next_line(int fd);
-//char	*ft_strchr(const char *s, int c);
-//char	*ft_strjoin(char *s1, const char *s2, size_t size);
-
 
 /*ft_printf*/
 int		ft_printf(const char *format, ...);

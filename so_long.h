@@ -6,21 +6,20 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 20:28:24 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 22:38:30 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-//#include <mlx.h>
-#include "MLX42/MLX42.h"
-#include "./libft/libft.h"
-#include <stddef.h>
-#include <stdio.h>
-#include <string.h>
+# include "MLX42/MLX42.h"
+# include "./libft/libft.h"
+# include <stddef.h>
+# include <stdio.h>
+# include <string.h>
 
-# define	SSIZE		31
+# define SSIZE	31
 
 typedef struct s_image
 {
@@ -90,6 +89,5 @@ char	*get_next_line(int fd);
 int		check_path(t_program *game, int x, int y, int c);
 int		check_map_ber(char *file);
 int		walls_check(t_program *game);
-
 
 #endif
