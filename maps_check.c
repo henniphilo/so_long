@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 20:06:45 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 22:01:06 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_map_ber(char *file)
 	i = 0;
 	while(file[i] != '\0')
 		i++;
-	i -= 1;
+	i--;
 	if(file[i] != 'r' || file[i - 1] != 'e' || file[i - 2] != 'b'
 		|| file[i - 3] != '.')
 		return(1);
@@ -80,7 +80,7 @@ void	print_count(t_program *game)
 	char	*str;
 
 	str = ft_itoa(game->count.step_count);
-	mlx_image_to_window(game->mlx_pointer, game->img.exit, 0, 0);
+	mlx_image_to_window(game->mlx_pointer, game->img.bg, 0, 0);
 	mlx_put_string(game->mlx_pointer, str , 0, 0);
 	free(str);
 	ft_printf("\rSteps: %d", game->count.step_count);

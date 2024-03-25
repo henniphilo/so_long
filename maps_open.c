@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:33:45 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 20:00:21 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:29:37 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	map_init(t_program *game)
 		}
 		y++;
 	}
+	mlx_image_to_window(game->mlx_pointer, game->img.bg, 0, 0);
 }
 
 void	interpret_map(t_program *game, int x, int y)

@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 19:54:31 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:28:56 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	main(int argc, char **argv)
 		open_map(&game, file);
 		game_on(&game);
 		show_pics(&game);
+		show_pic2(&game);
 		map_init(&game);
 		check_correct_CPE(&game);
 		if(check_path(&game, game.map.player.pos_x, game.map.player.pos_y, game.count.treasures) == 1)

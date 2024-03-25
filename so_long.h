@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 19:55:12 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:28:24 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_image
 	mlx_image_t	*player;
 	mlx_image_t	*treasure;
 	mlx_image_t	*exit;
+	mlx_image_t	*bg;
 }	t_image;
 
 typedef struct s_sprite
@@ -70,6 +71,7 @@ void	get_map(t_program *game, int fd);
 void	interpret_map(t_program *game, int x, int y);
 void	clean_pics(t_program *game);
 void	show_pics(t_program *game);
+void	show_pic2(t_program *game);
 void	map_init(t_program *game);
 void	open_map(t_program *game, char *file);
 void	game_on(t_program *game);
