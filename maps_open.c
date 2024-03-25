@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:33:45 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 16:31:02 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:11:07 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ void	open_map(t_program *game, char *file)
 
 	fd = open(file, O_RDONLY);
 	if(fd < 0)
-		perror("fd open error");
+		perror("Error \n fd open error");
 	if(check_map_ber(file) == 1)
+	{
+		perror("Error \n no .ber file");
 		exit(1) ;
-	space_map(game, fd); //map.map gemalloct und height initialisiert
+	}
+	space_map(game, fd);
 	close(fd);
 	fd = open(file, O_RDONLY);
-	get_map(game, fd); //width initialisiert und in map.map kopiert damm walls check
+	get_map(game, fd);
 	close(fd);
 }
 
@@ -36,6 +39,7 @@ void	map_init(t_program *game)
 	game->count.treasures = 0;
 	game->count.player_count = 0;
 	game->count.exit_count = 0;
+	game->count.collects = 0;
 
 	y = 0;
 	while (y < game->map.height)

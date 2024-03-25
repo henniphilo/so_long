@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 17:19:29 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:18:17 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_map_ber(char *file)
 	if(file[i] != 'r' || file[i - 1] != 'e' || file[i - 2] != 'b'
 		|| file[i - 3] != '.')
 	{
-		perror("invalid file extension");
+		perror("Error \n invalid file extension");
 		return(1);
 	}
 	return(0);
@@ -57,42 +57,30 @@ int	walls_check(t_program *game)
 
 void	count_CPE(t_program *game, int x, int y)
 {
-
 	if(game->map.map[y][x] == 'C')
 	{
 		game->count.treasures += 1;
-	//	printf("found a treasure %d \n", game->count.treasures);
 	}
-	else if(game->map.map[y][x] == 'E')
-	{
+	if(game->map.map[y][x] == 'E')
 		game->count.exit_count += 1;
-		printf("found an Exit \n");
-	}
-	else if(game->map.map[y][x] == 'P')
-	{
+	if(game->map.map[y][x] == 'P')
 		game->count.player_count += 1;
-		printf("found a player \n");
-	}
 }
 
 void	check_correct_CPE(t_program *game)
 {
-	if((game->count.player_count != 1) || (game->count.treasures < 1) || (game->count.exit_count != 1))
+	if((game->count.player_count != 1) || (game->count.treasures < 1)
+		|| (game->count.exit_count != 1))
+	{
+		perror("Error \n C/P/E in map not correct\n");
 		end_game(game);
-	// 	perror("Not enough or too many Player \n");
-	// if(game->count.treasures < 1)
-	// 	perror("Nothing to win here \n");
-	// if(game->count.exit_count != 1)
-	// 	perror("No exit strategy \n");
+	}
+	ft_printf("Treasures to collect: %d \n", game->count.treasures);
 }
 void	print_count(t_program *game)
 {
 	mlx_image_to_window(game->mlx_pointer, game->img.exit, 0, 0);
-//	mlx_put_string(game->mlx_pointer, "hi this is a placeholder for steps: ", 40, 40);
 	mlx_put_string(game->mlx_pointer, ft_itoa(game->count.step_count) , 0, 0);
 	//free itoa
-
 	ft_printf("\rSteps: %d", game->count.step_count);
-	// ft_printf("Treasures: %d \n", game->count.collects);
 }
-//ft_itoa(game->count.step_count)

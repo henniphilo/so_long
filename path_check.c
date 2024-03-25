@@ -6,12 +6,11 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:12:52 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 12:13:20 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:58:19 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	flood_path(t_program *game, int x, int y, int *c)
 {
@@ -35,19 +34,6 @@ void	flood_path(t_program *game, int x, int y, int *c)
 	flood_path(game, x + 1, y, c);
 	flood_path(game, x - 1, y, c);
 }
-/*
-	while(i < 4)
-	{
-		nx = x + dx[i];
-		ny = y + dy[i];
-		printf("gerade hier [%d][%d] \n", y, x);
-		if(flood_path(game, nx, ny, c))
-			return (1);
-		i++;
-	}
-	return (0);
-
-	 */
 
 int		check_path(t_program *game, int x, int y, int c)
 {
