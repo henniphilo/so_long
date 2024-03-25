@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 19:53:42 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:54:31 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	game_on(t_program *game)
 			perror("Error \n init error");
 
 }
-static void	free_map(t_program *game)
+void	free_map(t_program *game)
 {
 	int	i;
 

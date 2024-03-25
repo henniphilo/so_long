@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 19:21:42 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:55:12 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,16 @@ void	game_on(t_program *game);
 void	space_map(t_program *game, int fd);
 void	key_hook(mlx_key_data_t key, void *ptr);
 void	print_count(t_program *game);
-char	*get_next_line(int fd);
 void	check_end(t_program *game);
 void	end_game(t_program *game);
 void	count_CPE(t_program *game, int x, int y);
-
+void	free_map(t_program *game);
 void	flood_path(t_program *game, int x, int y, int *c);
+void	check_correct_CPE(t_program *game);
+
+char	*get_next_line(int fd);
+
 int		check_path(t_program *game, int x, int y, int c);
-void		check_correct_CPE(t_program *game);
 int		check_map_ber(char *file);
 int		walls_check(t_program *game);
 

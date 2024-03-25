@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 19:07:47 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:06:45 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	check_map_ber(char *file)
 	i -= 1;
 	if(file[i] != 'r' || file[i - 1] != 'e' || file[i - 2] != 'b'
 		|| file[i - 3] != '.')
-	{
-		perror("Error \n invalid file extension");
 		return(1);
-	}
 	return(0);
 }
 
@@ -74,6 +71,7 @@ void	check_correct_CPE(t_program *game)
 	{
 		perror("Error \n C/P/E in map not correct\n");
 		end_game(game);
+		exit(0);
 	}
 	ft_printf("Treasures to collect: %d \n", game->count.treasures);
 }

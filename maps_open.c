@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:33:45 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 19:45:41 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:00:21 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	open_map(t_program *game, char *file)
 	if(check_map_ber(file) == 1)
 	{
 		perror("Error \n no .ber file");
-		exit(1) ;
+		exit(0) ;
 	}
 	space_map(game, fd);
 	close(fd);

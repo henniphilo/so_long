@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 10:13:26 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 18:17:34 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:04:39 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	player_no_one(t_program *game, int y, int x)
 
 void	check_end(t_program *game)
 {
-	if(game->count.collects == game->count.treasures)
+	if(game->count.treasures != 0 && game->count.collects == game->count.treasures)
 		ft_printf("\nCongrats!\n");
 	else if(game->count.collects < game->count.treasures)
 		ft_printf("\nGame over. Not enough Treasures collected \n");
