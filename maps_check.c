@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 18:18:17 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:07:47 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,11 @@ void	check_correct_CPE(t_program *game)
 }
 void	print_count(t_program *game)
 {
+	char	*str;
+
+	str = ft_itoa(game->count.step_count);
 	mlx_image_to_window(game->mlx_pointer, game->img.exit, 0, 0);
-	mlx_put_string(game->mlx_pointer, ft_itoa(game->count.step_count) , 0, 0);
-	//free itoa
+	mlx_put_string(game->mlx_pointer, str , 0, 0);
+	free(str);
 	ft_printf("\rSteps: %d", game->count.step_count);
 }

@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 12:30:35 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:21:42 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "./libft/libft.h"
 #include <stddef.h>
 #include <stdio.h>
+#include <string.h>
 
 # define	SSIZE		31
 

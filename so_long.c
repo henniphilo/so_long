@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 17:59:30 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:53:42 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,18 @@ void	game_on(t_program *game)
 			perror("Error \n init error");
 
 }
+static void	free_map(t_program *game)
+{
+	int	i;
 
+	i = 0;
+	while(i < game->map.height)
+	{
+		free(game->map.map[i]);
+		i++;
+	}
+	free(game->map.map);
+}
 int	main(int argc, char **argv)
 {
 	t_program	game;
@@ -53,6 +64,7 @@ int	main(int argc, char **argv)
 		mlx_loop_hook(game.mlx_pointer, &hook, &game);
 		mlx_key_hook(game.mlx_pointer, &key_hook, &game);
 		mlx_loop(game.mlx_pointer);
+		free_map(&game);
 		clean_pics(&game);
 		mlx_terminate(game.mlx_pointer);
 	}

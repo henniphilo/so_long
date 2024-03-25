@@ -39,6 +39,7 @@ $(LIBFT)/$(LIBFA):
 clean:
 	make -C $(LIB) clean
 	make -C $(LIBFT) clean
+	$(RM) $(OBJ)
 
 fclean: clean
 	make -C $(LIBFT) fclean
