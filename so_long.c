@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 10:44:40 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:27:33 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 		map_init(&game);
 		printf("Treasure to collect: %d \n", game.count.treasures);
 		printf("Player in game: %d \n", game.count.player_count);
-		check_map_possible(&game);
+		check_correct_CPE(&game);
 		if(check_path(&game, game.map.player.pos_x, game.map.player.pos_y, game.count.treasures) == 1)
 			end_game(&game);
 

@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 11:44:59 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:30:35 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,7 @@ void	count_CPE(t_program *game, int x, int y);
 
 void	flood_path(t_program *game, int x, int y, int *c);
 int		check_path(t_program *game, int x, int y, int c);
-int		check_map_possible(t_program *game);
-int		map_empty(char **map);
+void		check_correct_CPE(t_program *game);
 int		check_map_ber(char *file);
 int		walls_check(t_program *game);
 

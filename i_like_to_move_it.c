@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 10:13:26 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/22 16:32:37 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:39:38 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ static void	player_no_one(t_program *game, int y, int x)
 	}
 	if(game->map.map[pos_y + y][pos_x + x] == 'C')
 		game->count.collects += 1;
-	mlx_image_to_window(game->mlx_pointer, game->img.player,(pos_x * SSIZE), (pos_y * SSIZE));
+	mlx_image_to_window(game->mlx_pointer, game->img.player,(pos_x * SSIZE),
+		(pos_y * SSIZE));
 	if(game->map.map[pos_y - y][pos_x - x] != 'E')
-		mlx_image_to_window(game->mlx_pointer, game->img.floor,((pos_x - (x))* SSIZE), ((pos_y - (y)) * SSIZE));
+		mlx_image_to_window(game->mlx_pointer, game->img.floor,
+			((pos_x - (x))* SSIZE), ((pos_y - (y)) * SSIZE));
 	else if (game->map.map[pos_y][pos_x] == 'E')
 		end_game(game);
 	game->map.player.pos_x = pos_x;
@@ -68,6 +70,9 @@ void	end_game(t_program *game)
 	check_end(game);
 	mlx_close_window(game->mlx_pointer);
 }
+
+
+//hier dran arbeiten!!!!
 
 void	key_hook(mlx_key_data_t key, void *ptr)
 {
@@ -94,9 +99,7 @@ void	key_hook(mlx_key_data_t key, void *ptr)
 }
 //macht alles immer doppelt
 // und wenn umgeben von wallls removed walls
+//zaehlt alle tasten die gedrueckt werden als steps
 
-void	print_count(t_program *game)
-{
-	ft_printf("Steps: %d \n", game->count.step_count);
-	ft_printf("Treasures: %d \n", game->count.collects);
-}
+
+
