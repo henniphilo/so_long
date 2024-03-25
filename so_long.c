@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 12:27:33 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:35:53 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,10 @@ int	main(int argc, char **argv)
 		show_pics(&game); //initialisiert bilder
 		map_init(&game);
 		printf("Treasure to collect: %d \n", game.count.treasures);
-		printf("Player in game: %d \n", game.count.player_count);
 		check_correct_CPE(&game);
 		if(check_path(&game, game.map.player.pos_x, game.map.player.pos_y, game.count.treasures) == 1)
 			end_game(&game);
 
-		for (int i = 0; i < game.map.height; i++) {
-        for (int j = 0; j < game.map.width; j++) {
-            printf("%c ", game.map.map[i][j]);
-        }
-        printf("\n");
-    }
 		mlx_loop_hook(game.mlx_pointer, &hook, &game);
 		mlx_key_hook(game.mlx_pointer, &key_hook, &game);
 		mlx_loop(game.mlx_pointer);
@@ -66,3 +59,12 @@ int	main(int argc, char **argv)
 		printf("nope");
 	return(0);
 }
+
+/*
+		for (int i = 0; i < game.map.height; i++) {
+        for (int j = 0; j < game.map.width; j++) {
+            printf("%c ", game.map.map[i][j]);
+        }
+        printf("\n");
+    }
+*/

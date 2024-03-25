@@ -6,7 +6,7 @@
 #    By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/02 15:58:16 by hwiemann          #+#    #+#              #
-#    Updated: 2024/03/12 16:57:41 by hwiemann         ###   ########.fr        #
+#    Updated: 2024/03/25 17:24:55 by hwiemann         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,6 @@ ft_putendl_fd.c \
 ft_putnbr_fd.c \
 ft_printf.c \
 ft_printf_helper.c \
-get_next_line.c \
 
 BONUSFILES = ft_lstnew.c \
 ft_lstadd_front.c \

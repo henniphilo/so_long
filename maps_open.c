@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:33:45 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 12:34:28 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:31:02 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ void	open_map(t_program *game, char *file)
 	fd = open(file, O_RDONLY);
 	if(fd < 0)
 		perror("fd open error");
-	check_map_ber(file);
+	if(check_map_ber(file) == 1)
+		exit(1) ;
 	space_map(game, fd); //map.map gemalloct und height initialisiert
 	close(fd);
 	fd = open(file, O_RDONLY);
 	get_map(game, fd); //width initialisiert und in map.map kopiert damm walls check
 	close(fd);
 }
+
 void	map_init(t_program *game)
 {
 	int	x;

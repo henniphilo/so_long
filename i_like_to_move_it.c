@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 10:13:26 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 13:57:23 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:19:38 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,20 @@ static void	player_no_one(t_program *game, int y, int x)
 	{
 		pos_y += y;
 		pos_x += x;
+		game->count.step_count++;
 	}
-	if(game->map.map[pos_y + y][pos_x + x] == 'C')
+	if(game->map.map[pos_y][pos_x] == 'C')
+	{
 		game->count.collects += 1;
+		game->map.map[pos_y][pos_x] = '0';
+	}
+	if(game->map.map[game->map.player.pos_y][game->map.player.pos_x] != 'E')
+		mlx_image_to_window(game->mlx_pointer, game->img.floor,
+			(game->map.player.pos_x* SSIZE), (game->map.player.pos_y * SSIZE));
+	if (game->map.map[pos_y][pos_x] == 'E')
+		end_game(game);
 	mlx_image_to_window(game->mlx_pointer, game->img.player,(pos_x * SSIZE),
 		(pos_y * SSIZE));
-	if(game->map.map[pos_y - y][pos_x - x] != 'E')
-		mlx_image_to_window(game->mlx_pointer, game->img.floor,
-			((pos_x - (x))* SSIZE), ((pos_y - (y)) * SSIZE));
-	else if (game->map.map[pos_y][pos_x] == 'E')
-		end_game(game);
 	game->map.player.pos_x = pos_x;
 	game->map.player.pos_y = pos_y;
 }
@@ -60,9 +64,9 @@ static void	player_no_one(t_program *game, int y, int x)
 void	check_end(t_program *game)
 {
 	if(game->count.collects == game->count.treasures)
-		ft_printf("Congrats!\n");
+		ft_printf("\nCongrats!\n");
 	else
-		ft_printf("Game Over \n");
+		ft_printf("\nGame Over \n");
 }
 
 void	end_game(t_program *game)
@@ -85,7 +89,6 @@ void	key_hook(mlx_key_data_t key, void *ptr)
 	game = ptr;
 	if(key.action == MLX_RELEASE)
 	{
-		game->count.step_count += 1;
 		if(key.key == MLX_KEY_ESCAPE)
 			end_game(game);
 		else
@@ -93,9 +96,10 @@ void	key_hook(mlx_key_data_t key, void *ptr)
 			y =	get_y(key);
 			x = get_x(key);
 		}
+		player_no_one(game, y, x);
+		print_count(game); // woanders hinbewegen?
 	}
-	player_no_one(game, y, x);
-	print_count(game); // woanders hinbewegen?
+
 }
 //macht alles immer doppelt
 // und wenn umgeben von wallls removed walls

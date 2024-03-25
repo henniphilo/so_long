@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 13:54:32 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:19:29 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int	check_map_ber(char *file)
 	i -= 1;
 	if(file[i] != 'r' || file[i - 1] != 'e' || file[i - 2] != 'b'
 		|| file[i - 3] != '.')
+	{
 		perror("invalid file extension");
-	else
-		printf("map.ber check done\n");
+		return(1);
+	}
 	return(0);
 }
 
@@ -89,7 +90,9 @@ void	print_count(t_program *game)
 	mlx_image_to_window(game->mlx_pointer, game->img.exit, 0, 0);
 //	mlx_put_string(game->mlx_pointer, "hi this is a placeholder for steps: ", 40, 40);
 	mlx_put_string(game->mlx_pointer, ft_itoa(game->count.step_count) , 0, 0);
-	ft_printf("Steps: %d \n", game->count.step_count);
-	ft_printf("Treasures: %d \n", game->count.collects);
+	//free itoa
+
+	ft_printf("\rSteps: %d", game->count.step_count);
+	// ft_printf("Treasures: %d \n", game->count.collects);
 }
 //ft_itoa(game->count.step_count)

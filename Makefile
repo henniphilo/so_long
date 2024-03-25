@@ -10,11 +10,11 @@ LIBFT = libft
 LIBFA = libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g # -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g  -fsanitize=address
 RM = rm -f
 
 SRC = *.c \
-
+#OBJ = $(SRC:.c=.o)
 
 all: so_long
 
@@ -36,7 +36,6 @@ clean:
 	make -C $(LIBFT) clean
 
 fclean: clean
-	make -C $(LIB) fclean
 	make -C $(LIBFT) fclean
 	$(RM) so_long
 re: fclean all
