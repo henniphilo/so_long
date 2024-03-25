@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 10:13:26 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 12:39:38 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:57:23 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	key_hook(mlx_key_data_t key, void *ptr)
 		}
 	}
 	player_no_one(game, y, x);
-	print_count(game);
+	print_count(game); // woanders hinbewegen?
 }
 //macht alles immer doppelt
 // und wenn umgeben von wallls removed walls

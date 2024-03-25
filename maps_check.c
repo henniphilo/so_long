@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 12:39:05 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:54:32 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,10 @@ void	check_correct_CPE(t_program *game)
 }
 void	print_count(t_program *game)
 {
+	mlx_image_to_window(game->mlx_pointer, game->img.exit, 0, 0);
+//	mlx_put_string(game->mlx_pointer, "hi this is a placeholder for steps: ", 40, 40);
+	mlx_put_string(game->mlx_pointer, ft_itoa(game->count.step_count) , 0, 0);
 	ft_printf("Steps: %d \n", game->count.step_count);
 	ft_printf("Treasures: %d \n", game->count.collects);
 }
+//ft_itoa(game->count.step_count)
