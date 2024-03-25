@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/23 19:50:39 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:44:59 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_program
 	t_image		img;
 	t_sprite	sprite;
 	t_count		count;
+	bool		exit_exists;
 }	t_program;
 
 void	get_map(t_program *game, int fd);
@@ -79,7 +80,7 @@ void	check_end(t_program *game);
 void	end_game(t_program *game);
 void	count_CPE(t_program *game, int x, int y);
 
-int		flood_path(t_program *game, int x, int y, int *c);
+void	flood_path(t_program *game, int x, int y, int *c);
 int		check_path(t_program *game, int x, int y, int c);
 int		check_map_possible(t_program *game);
 int		map_empty(char **map);

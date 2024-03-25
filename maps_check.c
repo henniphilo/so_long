@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/23 19:52:19 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:04:50 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,45 +202,63 @@ int	check_map_possible(t_program *game)
 	return(0);
 }
 
-int	flood_path(t_program *game, int x, int y, int *c)
+void	flood_path(t_program *game, int x, int y, int *c)
 {
+	//printf("*c is %d \n", *c);
+
 	if(x < 0 || x >= game->map.width || y < 0 || y >= game->map.height
 		|| game->map.map[y][x] == 'O' || game->map.map[y][x] == '1'
 		|| game->map.map[y][x] == 'c' || game->map.map[y][x] == 'E')
 	{
 	 	if(game->map.map[y][x] == 'E')
-	 		return (1);
-		return(0);
+	 		game->exit_exists = 1;
+		return ;
 	}
-
-	if(game->map.map[y][x] == 'C')
+	if(game->map.map[y][x] == '0')
+		game->map.map[y][x] = 'O';
+	else if(game->map.map[y][x] == 'C')
 	{
+	//	printf("C hier [%d][%d] \n", y, x);
 		(*c)--;
 		game->map.map[y][x] = 'c';
 	}
-	else if(game->map.map[y][x] == '0')
-		game->map.map[y][x] = 'O';
 	flood_path(game, x, y + 1, c);
 	flood_path(game, x, y - 1, c);
 	flood_path(game, x + 1, y, c);
 	flood_path(game, x - 1, y, c);
-	return(0);
 }
+/*
+	while(i < 4)
+	{
+		nx = x + dx[i];
+		ny = y + dy[i];
+		printf("gerade hier [%d][%d] \n", y, x);
+		if(flood_path(game, nx, ny, c))
+			return (1);
+		i++;
+	}
+	return (0);
+
+	 */
 
 int		check_path(t_program *game, int x, int y, int c)
 {
-	printf("ausgangs y x: [%d][%d] \n", y, x);
+//	printf("ausgangs y x: [%d][%d] \n", y, x);
 	flood_path(game, x, y, &c);
-
+	printf("state of exit: %d \n", game->exit_exists);
+	if (game->exit_exists != 1)
+		return(1);
+	y = 0;
 	while(y < game->map.height)
 	{
+		x = 0;
 		while(x < game->map.width)
 		{
-			if(game->map.map[y][x] != 'c' && game->map.map[y][x] != 'P'
-				&& game->map.map[y][x] != 'O' && game->map.map[y][x] != 'E'
+			if(game->map.map[y][x] != 'c' && game->map.map[y][x] != 'P' && game->map.map[y][x] != 'O'
+				&& game->map.map[y][x] != '0' && game->map.map[y][x] != 'E'
 				&& game->map.map[y][x] != '1')
 				{
-					printf("es hapert hier [%d][%d]", y, x);
+					printf("es hapert hier [%d][%d] \n", y, x);
 					return(1);
 				}
 			else
