@@ -8,7 +8,7 @@ LIBFT = libft
 LIBFA = libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g   -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g  -fsanitize=address
 RM = rm -f
 
 SRC = so_long.c \

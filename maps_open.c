@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:33:45 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/25 20:29:37 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:22:58 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	map_init(t_program *game)
 		while (x < game->map.width)
 		{
 			interpret_map(game, x, y);
-			count_CPE(game, x, y);
+			count_cpe(game, x, y);
 			x++;
 		}
 		y++;
