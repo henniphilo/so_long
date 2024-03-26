@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:13:53 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/26 13:18:36 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:09:09 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ void	space_map(t_program *game, int fd)
 	int		i;
 
 	i = 0;
-	while ((line = get_next_line(fd)) != NULL) //hier noch arbeiten
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		if (!(line))
 			perror("Error\n gnl problem");
 		free(line);
 		i++;
+		line = get_next_line(fd);
 	}
 	game->map.map = (char **)malloc(sizeof(line) * i);
 	game->map.height = i;
@@ -35,7 +37,8 @@ void	get_map(t_program *game, int fd)
 	int		i;
 
 	i = 0;
-	while ((line_str = get_next_line(fd)) != NULL)
+	line_str = get_next_line(fd);
+	while (line_str != NULL)
 	{
 		if (!(line_str))
 		{
@@ -46,6 +49,7 @@ void	get_map(t_program *game, int fd)
 		game->map.map[i] = ft_strdup(line_str);
 		free(line_str);
 		i++;
+		line_str = get_next_line(fd);
 	}
 	if ((walls_check(game)) == 1)
 	{
