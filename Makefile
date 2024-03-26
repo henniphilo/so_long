@@ -8,25 +8,25 @@ LIBFT = libft
 LIBFA = libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g  -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g  # -fsanitize=address
 RM = rm -f
 
-SRC = so_long.c \
-maps_check.c \
-maps_open.c\
-maps_prep.c \
-i_like_to_move_it.c \
-get_next_line.c \
-get_next_line_utiles.c \
-look_like.c \
-path_check.c \
+SRC = 	src/so_long.c \
+		src/maps_check.c \
+		src/maps_open.c\
+		src/maps_prep.c \
+		src/i_like_to_move_it.c \
+		src/get_next_line.c \
+		src/get_next_line_utiles.c \
+		src/look_like.c \
+		src/path_check.c \
 
 OBJ = $(SRC:.c=.o)
 
-all: so_long
+all: setup $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) $(CFLAGS) -Iinclude -Ilibft -I/usr/include -Imlx_linux -IMLX42/include/MLX42 -O3 -c $< -o $@
 
 $(NAME): $(OBJ) $(LIB)/$(LIBA) $(LIBFT)/$(LIBFA)
 	$(CC) $(CFLAGS) $(OBJ) -L$(LIB) $(LIBFT)/$(LIBFA) -L/usr/MLX42 -lmlx42 -ldl -lglfw -lm -lpthread -o $(NAME)
@@ -46,5 +46,10 @@ fclean: clean
 	make -C $(LIBFT) fclean
 	$(RM) $(NAME)
 re: fclean all
+
+setup:
+	git clone https://github.com/codam-coding-college/MLX42.git
+	cd MLX42 && cmake -B build
+	cmake --build MLX42/build -j4
 
 .PHONY: all clean fclean re
