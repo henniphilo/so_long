@@ -17,6 +17,7 @@ maps_open.c\
 maps_prep.c \
 i_like_to_move_it.c \
 get_next_line.c \
+get_next_line_utiles.c \
 look_like.c \
 path_check.c \
 

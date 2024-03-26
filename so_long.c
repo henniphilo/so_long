@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/26 10:22:14 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/26 11:24:15 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	main(int argc, char **argv)
 		open_map(&game, file);
 		game_on(&game);
 		show_pics(&game);
-		show_pic2(&game);
 		map_init(&game);
 		check_correct_cpe(&game);
 		if (check_path(&game, game.map.player.pos_x,

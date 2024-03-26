@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/26 10:23:04 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/26 11:36:35 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ typedef struct s_image
 	mlx_image_t	*exit;
 	mlx_image_t	*bg;
 }	t_image;
+
+typedef struct s_texture
+{
+	mlx_texture_t	*wall;
+	mlx_texture_t	*floor;
+	mlx_texture_t	*player;
+	mlx_texture_t	*treasure;
+	mlx_texture_t	*exit;
+	mlx_texture_t	*bg;
+}	t_texture;
 
 typedef struct s_sprite
 {
@@ -61,6 +71,7 @@ typedef struct s_program
 	mlx_t		*mlx_pointer;
 	t_map		map;
 	t_image		img;
+	t_texture	texture;
 	t_sprite	sprite;
 	t_count		count;
 	bool		exit_exists;
@@ -70,7 +81,6 @@ void	get_map(t_program *game, int fd);
 void	interpret_map(t_program *game, int x, int y);
 void	clean_pics(t_program *game);
 void	show_pics(t_program *game);
-void	show_pic2(t_program *game);
 void	map_init(t_program *game);
 void	open_map(t_program *game, char *file);
 void	game_on(t_program *game);
@@ -83,8 +93,15 @@ void	count_cpe(t_program *game, int x, int y);
 void	free_map(t_program *game);
 void	flood_path(t_program *game, int x, int y, int *c);
 void	check_correct_cpe(t_program *game);
+void	get_textures(t_program *game);
+void	clean_texture(t_program *game);
 
 char	*get_next_line(int fd);
+char	*gnl_strjoin(char *s1, const char *s2, size_t size);
+char	*gnl_strchr(const char *s, int c);
+size_t	gnl_strlcpy(char *dst, const char *src, size_t size);
+size_t	gnl_strlen(const char *s);
+
 
 int		check_path(t_program *game, int x, int y, int c);
 int		check_map_ber(char *file);
