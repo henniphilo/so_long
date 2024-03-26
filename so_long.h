@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:29:27 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/26 11:36:35 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:23:06 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ char	*gnl_strjoin(char *s1, const char *s2, size_t size);
 char	*gnl_strchr(const char *s, int c);
 size_t	gnl_strlcpy(char *dst, const char *src, size_t size);
 size_t	gnl_strlen(const char *s);
-
 
 int		check_path(t_program *game, int x, int y, int c);
 int		check_map_ber(char *file);

@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/26 11:24:15 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:47:47 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ void	game_on(t_program *game)
 			(SSIZE * game->map.height), "hello again", false);
 	if (!(game->mlx_pointer))
 		perror("Error \n init error");
+}
+
+void	end_game(t_program *game)
+{
+	check_end(game);
+	mlx_close_window(game->mlx_pointer);
 }
 
 void	free_map(t_program *game)

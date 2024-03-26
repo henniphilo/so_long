@@ -6,16 +6,15 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:26:46 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/26 11:34:19 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/26 11:39:55 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
 static char	*free_buffers(char **buffer, char *next_line, int free_result)
 {
-	free(*buffer);
+	free (*buffer);
 	*buffer = NULL;
 	if (free_result)
 		free(next_line);
@@ -70,4 +69,3 @@ char	*get_next_line(int fd)
 	}
 	return (read_line(fd, &buffer, next_line, &chars_read));
 }
-
