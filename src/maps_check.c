@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:39:02 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/26 10:11:40 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:36:55 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,13 @@ void	count_cpe(t_program *game, int x, int y)
 		game->count.exit_count += 1;
 	if (game->map.map[y][x] == 'P')
 		game->count.player_count += 1;
+	if (game->map.map[y][x] != 'C' && game->map.map[y][x] != 'P'
+			&& game->map.map[y][x] != 'E' && game->map.map[y][x] != '1'
+			&& game->map.map[y][x] != '0')
+	{
+		perror("Error\n invalide character in map\n");
+		exit(0);
+	}
 }
 
 void	check_correct_cpe(t_program *game)

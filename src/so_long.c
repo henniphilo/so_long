@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:28:20 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/26 14:28:59 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:56:30 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int argc, char **argv)
 		if (check_path(&game, game.map.player.pos_x,
 				game.map.player.pos_y, game.count.treasures) == 1)
 		{
-			perror("Error \n fd path not valid \n");
+			perror("Error \n path not valid \n");
 			end_game(&game);
 		}
 		mlx_loop_hook(game.mlx_pointer, &hook, &game);
