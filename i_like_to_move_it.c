@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 10:13:26 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/26 12:47:42 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:35:57 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static void	player_no_one(t_program *game, int y, int x)
 	if (game->map.map[pos_y][pos_x] == 'C')
 	{
 		game->count.collects += 1;
-		ft_printf("\nTreasures collected: %d \n", game->count.collects);
 		game->map.map[pos_y][pos_x] = '0';
 	}
 	if (game->map.map[game->map.player.pos_y][game->map.player.pos_x] != 'E')
@@ -64,6 +63,7 @@ static void	player_no_one(t_program *game, int y, int x)
 
 void	check_end(t_program *game)
 {
+	ft_printf("\nTreasures collected: %d \n", game->count.collects);
 	if (game->count.treasures != 0
 		&& game->count.collects == game->count.treasures)
 		ft_printf("\nCongrats!\n");

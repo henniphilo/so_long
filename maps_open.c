@@ -6,7 +6,7 @@
 /*   By: hwiemann <hwiemann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:33:45 by hwiemann          #+#    #+#             */
-/*   Updated: 2024/03/26 14:22:04 by hwiemann         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:28:24 by hwiemann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	map_init(t_program *game)
 	int	x;
 	int	y;
 
+	show_pics(game);
 	game->count.step_count = 0;
 	game->count.treasures = 0;
 	game->count.player_count = 0;
@@ -54,6 +55,7 @@ void	map_init(t_program *game)
 		y++;
 	}
 	mlx_image_to_window(game->mlx_pointer, game->img.bg, 0, 0);
+	check_correct_cpe(game);
 }
 
 void	interpret_map(t_program *game, int x, int y)
